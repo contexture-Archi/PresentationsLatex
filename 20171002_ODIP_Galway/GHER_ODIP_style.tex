@@ -1,0 +1,73 @@
+\documentclass[final,xcolor=table]{beamer}
+\usepackage[english]{babel}
+%\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{tikz}
+\usepackage{doi}
+\usepackage{booktabs}
+\usepackage{fontawesome}
+\usepackage{academicons}
+\usepackage{fontspec}
+
+
+\setmainfont{Gillius ADF No2}
+
+\newcommand{\logoheight}{1cm}
+
+\DeclareGraphicsExtensions{.pdf,.png,.PNG,.JPG,.jpg,.jpeg,.gif}
+\graphicspath{
+{./figures/},
+{./figures/scientificprofiles/}
+{../../../figures4presentations/logo/},
+}
+
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{items}[square] 
+\setbeamertemplate{caption}[numbered]
+%\setbeamerfont{caption}{size=\scriptsize,family=\it}
+
+%\usefonttheme{professionalfonts} % using non standard fonts for beamer
+%\usefonttheme{serif} % default family is serif
+
+\usetikzlibrary{arrows,shapes,backgrounds}
+\tikzstyle{every picture}+=[remember picture]
+\tikzstyle{na} = [baseline=-.5ex]
+
+\definecolor{bluegher}{HTML}{4E519F}
+\definecolor{mygrey}{rgb}{0.75,.75,.75}
+\definecolor{arrowcolor}{rgb}{0.1,0.1,0.1}
+\definecolor{alertbg}{HTML}{FEFFBA}
+
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{frametitle}{fg=white,bg=bluegher}
+\setbeamercolor{institute}{fg=bluegher}
+\setbeamercolor{structure}{fg=bluegher}
+\setbeamercolor{item projected}{fg=black}
+
+%\setbeamersize{text margin left=1cm}
+
+\newlength{\logoH}
+\setlength{\logoH}{1cm}
+
+%--------------------------------
+\hypersetup{bookmarksopen=true,
+bookmarksnumbered=true,  
+pdffitwindow=true, 
+pdfstartview=Fit,
+%pdfpagemode=FullScreen,
+pdffitwindow=true,
+pdftoolbar=true,
+pdfmenubar=true,
+pdfwindowui=true,
+pdfauthor={C. Troupin, C. Muñoz, S. Watelet, A. Barth, J.M. Beckers},
+bookmarksopenlevel=0,
+colorlinks=true,
+linkcolor=bluegher,anchorcolor=black,%
+citecolor=bluegher,filecolor=black,%
+menucolor=black,urlcolor=bluegher,%
+pdfpageduration=1,%
+}

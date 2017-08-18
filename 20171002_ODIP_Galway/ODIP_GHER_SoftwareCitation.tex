@@ -1,0 +1,545 @@
+\input{GHER_ODIP_style.tex}
+
+\setbeamercovered{invisible}
+\setbeamertemplate{items}[triangle] 
+
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{institute}{fg=mygrey}
+\setbeamercolor{alerted text}{fg=bluegher,bg=alertbg}
+
+\newenvironment{boxalertenv}{\begin{altenv}%
+      {\usebeamertemplate{alerted text begin}\usebeamercolor[fg]{alerted text}\usebeamerfont{alerted text}\colorbox{bg}}
+      {\usebeamertemplate{alerted text end}}{\color{.}}{}}{\end{altenv}}
+
+\newcommand<>{\boxalert}[1]{{%
+  \begin{boxalertenv}#2{#1}\end{boxalertenv}%
+}}
+
+
+\setbeamerfont{sectiontitle1}{size=\huge,family=\rmfamily}
+\setbeamerfont{sectiontitle2}{size=\fontsize{50}{20}\selectfont,shape=\itshape,family=\rmfamily}
+\setbeamerfont{author}{size=\large,family=\rmfamily}
+\setbeamerfont{institute}{size=\normalsize,family=\rmfamily}
+\setbeamerfont{title}{size=\fontsize{25}{20}\selectfont,shape=\itshape,family=\rmfamily}
+
+\setbeamertemplate{enumerate items}[square]
+\setbeamercolor{item projected}{bg=mygrey,fg=bluegher}
+
+\title{Emerging standards for ocean\\ data analysis \& visualisation}
+%\subtitle{}
+\author[C.~Troupin]{C.~Troupin, C.~Muñoz, S.~Watelet,\\ A.~Barth \& J.-M.~Beckers}
+\institute{GHER-University of Liège\\ SOCIB}
+\date{Galway (Ireland), 2-6 October, 2017}
+\titlegraphic{\includegraphics[height=\logoheight]{logo_odip2}
+\includegraphics[height=\logoheight]{logo_uliege.jpeg}\\
+\includegraphics[height=\logoheight]{logo_gher}
+\includegraphics[height=\logoheight]{logo_socib}}
+%\url{www.socib.es}}
+  
+\urlstyle{rm}
+
+\setbeamertemplate{title page}{%
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=-30pt, xshift=-10pt]current page.north east) (author)
+  {\parbox[t]{.6\paperwidth}{\raggedleft%
+   \usebeamerfont{author}{\insertauthor}}};
+\node[anchor=north east] 
+  at ([yshift=-70pt, xshift=-10pt]current page.north east) (institute)
+  {\parbox[t]{.78\paperwidth}{\raggedleft%
+    \usebeamerfont{institute}\usebeamercolor[fg]{institute}{\insertinstitute}}};
+\node[anchor=south west] 
+  at ([yshift=20pt, xshift=20pt]current page.west) (logo)
+  {\parbox[t]{.19\paperwidth}{\centering%
+    \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic}};
+\node[anchor=east]
+  at ([yshift=-55pt,xshift=-20pt]current page.east) (title)
+  {\parbox[t]{\textwidth}{\raggedleft%
+   \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}};
+\end{tikzpicture}
+}
+
+\begin{document}
+
+\begin{frame}
+\maketitle
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+\section{netCDF4}
+
+\begin{frame}
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
+  {\parbox[t]{.6\paperwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle1}{A few words about}}};
+\node[anchor=east]
+  at ([yshift=-35pt,xshift=-20pt]current page.east) (title2)
+  {\parbox[t]{\textwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle2}\usebeamercolor[fg]{title}{netCDF4}}};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+\frametitle{NetCDF = software libraries and self-describing, machine-independent data formats}
+
+\begin{description}
+\item[CF-netCDF] OGC standard 
+
+\item[NetCDF-4:] 1st released in \ldots \onslide<2->{{\Large 2008!}}
+
+\item[What's new?]
+HDF5 as a storage layer\\
+use of groups\\
+user-defined types\\
+multiple unlimited dimensions\\
+\boxalert{compression}\\
+\boxalert{data chunking}\\ 
+parallel I/O\\
+\ldots 
+\end{description}
+
+
+%As of July 2017, the latest releases are 4.4.1.1 for netCDF-C and 4.4.4 for netCDF-Fortran.
+%Nowadays, most of the programming languages (see Table below), visualisation and processing tools (see Table in Comparison of standards) are able to read and write this format. This is why we believe it is time to push for a more generalised use of netCDF-4 and its features for oceanographic data management.
+
+\end{frame}
+%-----------------------------------------------------------------------------------------------
+
+
+\begin{frame}
+\frametitle{Programing languages: netCDF4 is there!}
+\begin{table}
+\begin{tabular}{rl}
+\toprule
+Language 	& 		Package/module installation \\
+\midrule
+\includegraphics[height=3ex]{logo_python}		& 		\url{https://github.com/Unidata/netcdf4-python}\\
+Fortran											& 		\url{https://github.com/Unidata/netcdf-fortran}\\
+C												& 		\url{https://github.com/Unidata/netcdf-c}\\
+\includegraphics[height=3ex]{logo_javascript}	& 		\url{https://www.npmjs.com/package/netcdf4}\\
+\includegraphics[height=3ex]{logo-octave}		&		\url{https://github.com/Alexander-Barth/octave-netcdf}\\
+\includegraphics[height=3ex]{logo_julia}		&  		\url{https://github.com/meggart/NetCDF.jl}\\
+Matlab											&		Since R2010b: native support\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Benchmark: WMS ​GetMap request in Oceanbrowser}
+\begin{figure}
+\centering
+%\onslide*<1>{\includegraphics[width=\textwidth]{}}
+%\onslide*<2>{\includegraphics[width=\textwidth]{}}
+%\onslide*<3>{\includegraphics[width=\textwidth]{}}
+\end{figure}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Benchmark: results}
+\begin{enumerate}
+\item File size reduced by a factor of \boxalert{38}\\
+(from 574M to 15M)\\
+with deflation level 1
+\item File size reduced by \boxalert{20\%} at deflation level 4
+\item \textit{Shuffling} reduces the file size even more
+\item Compression slightly increases WMS map generation time\\
+with shuffling: $<$5\%\\
+without shuffling: $<2$\%
+\end{enumerate}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Message}
+\huge
+Push for the use of\\
+netCDF\usebeamerfont{title}{4}
+\end{frame}
+
+
+%-----------------------------------------------------------------------------------------------
+\section{Software citation}
+\begin{frame}[c]
+
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
+  {\parbox[t]{.6\paperwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle1}{Persistent identifiers:\\
+what about}}};
+\node[anchor=east]
+  at ([yshift=-35pt,xshift=-20pt]current page.east) (title2)
+  {\parbox[t]{\textwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle2}\usebeamercolor[fg]{title}{software tools?}}};
+\end{tikzpicture}
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Context: who has done what, and how?}
+
+\huge 
+\onslide<1>{\aiAcademia}
+\aiAcclaim
+\aiACM
+\aiADS
+\aiarXiv
+\aibioRxiv
+\aiCEUR
+\aiCoursera
+\aidblp
+\aiDepsy
+
+\aiDoi
+\aiDryad
+\aiFigshare
+\onslide<1-2>{\aiGoogleScholar}
+\aiIEEE
+\aiImpactstory
+\aiInspire
+\aiMendeley
+\aiOpenAccess
+\aiOrcid
+
+\aiOSF
+\aiOverleaf
+\aiPhilPapers
+\aiPiazza
+\aiPublons
+\aiPubMed
+\aiResearchGate
+\aiSciRate
+\aiSpringer
+\aiZotero
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+\section{Notebooks}
+
+\begin{frame}[c]
+
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
+  {\parbox[t]{.6\paperwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle2}{Notebooks}}};
+\node[anchor=east]
+  at ([yshift=-35pt,xshift=-20pt]current page.east) (title2)
+  {\parbox[t]{\textwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle1}\usebeamercolor[fg]{title}{for documenting work-flows
+}}};
+\end{tikzpicture}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+\section{Data analysis and visualisation}
+\begin{frame}[c]
+
+ 
+
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
+  {\parbox[t]{.6\paperwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle1}{Tools for}}};
+\node[anchor=east]
+  at ([yshift=-55pt,xshift=-20pt]current page.east) (title2)
+  {\parbox[t]{\textwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle2}\usebeamercolor[fg]{title}{data analysis \& visualisation}}};
+\end{tikzpicture}
+
+\end{frame}
+
+
+
+
+
+\end{document}
+
+
+%-----------------------------------------------------------------------------------------------
+\begin{frame}[c]
+\frametitle{Where are the scientific results?}
+
+One paper = one DOI but\ldots \\
+not only \textbf{results} are published in papers
+
+\vspace{1cm}
+
+\onslide<2->{\href{http://www.geoscientific-model-development.net}{Geoscientific Model Development}:}
+
+\begin{itemize}
+\footnotesize
+\item<3-> "May include a \textbf{user manual} and actual \textbf{code} (as supplementary information)."
+
+\item<4-> "Submission of short papers describing subsequent model development and \textbf{bug-fixes} will be encouraged."
+
+\item<5->[]= Traceability and Reproducibility
+
+\end{itemize}
+
+
+\onslide<6->{\href{http://www.earth-syst-sci-data.net}{Earth System Science Data}}
+
+\begin{itemize}
+\footnotesize
+\item<7-> "(\ldots) publication of articles on \textbf{original research data} (sets), furthering the reuse of high-quality data of benefit to Earth system sciences."
+
+\item<8-> "Any interpretation of data is outside the scope of regular articles."
+
+
+\end{itemize}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+\begin{frame}[c]
+\frametitle{Who are the authors?}
+
+\onslide*<1>{\centering \includegraphics[width=.7\textwidth]{phd052114s.png}}
+
+\onslide<2-3>{\includegraphics[height=\logoH]{researchgate.png}}~~\onslide<3>{\url{https://www.researchgate.net}}\\
+\onslide<2-3>{\includegraphics[height=\logoH]{linkedin.png}}~~\onslide<3>{\url{http://linkedin.com/}}\\
+\onslide<2-4>{\includegraphics[height=\logoH]{orcid.png}}~~\onslide<3>{\url{https://orcid.org}}\onslide<4>{from previous ODIP workshop}\\
+\onslide<2-3>{\includegraphics[height=\logoH]{academia.jpg}}~~\onslide<3>{\url{https://www.academia.edu/}}\\
+\onslide<2-3>{\includegraphics[height=\logoH]{oceanexpert.jpeg}}~~\onslide<3>{\url{http://www.oceanexpert.net/}}\\
+\onslide<2-3>{\includegraphics[height=\logoH]{mendeley}}~~\onslide<3>{\url{https://www.mendeley.com/}}
+%\huge 
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+\begin{frame}[t]
+\frametitle{Where is the data?}
+
+\begin{columns}[T]
+\begin{column}{0.6\textwidth}
+\begin{itemize}
+\item<1-> Institutional portals
+\item<2-> International portals
+\item<3-> Paper + portal 
+\item<4-> Personal disk?
+\end{itemize}
+
+\end{column}
+\begin{column}{0.4\textwidth} 
+\onslide*<1>{
+\includegraphics[width=.85\columnwidth]{Corioliscatalog}
+
+\includegraphics[width=.85\columnwidth]{AODNcatalog.png}
+
+\includegraphics[width=.85\columnwidth]{SOCIBcatalog}
+}
+\onslide*<2>{
+\includegraphics[width=.85\columnwidth]{SeaDataNet}
+
+\includegraphics[width=.85\columnwidth]{EMODnet}
+
+\includegraphics[width=.85\columnwidth]{CMEMScatalog}
+}
+
+\onslide*<3>{\footnotesize
+\doi{10.5194/essd-8-141-2016}\\
+\includegraphics[width=.85\columnwidth]{MedGibPaper}
+\vspace{.5cm}
+\doi{10.1594/PANGAEA.853701}\\
+\includegraphics[width=.85\columnwidth]{MedGibData}
+
+
+}
+\onslide*<4>{\includegraphics[width=.9\columnwidth]{results.jpg}}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------------------------
+\begin{frame}[t]
+\frametitle{Where are the results/products?}
+
+\begin{columns}[T]
+\begin{column}{0.45\textwidth}
+\begin{itemize}
+\item<2-> Personal disks
+\item<3-> Product catalog
+\item<4-> Web page + PDF reports to be cited
+\end{itemize}
+\vspace{1cm}
+
+\onslide*<3>{\footnotesize DOI not always used, but rather an "Internal permanent shortname"\\
+ex: 4b65b074-19a2-11e5-95c0-8056f28224bb
+}
+
+\end{column}
+\begin{column}{0.55\textwidth} 
+\onslide*<2>{
+\includegraphics[width=.9\columnwidth]{results.jpg}
+}
+
+\onslide*<3>{
+\includegraphics[width=.9\columnwidth]{EMODnetChemCatalog}
+\vspace{.5cm}
+\includegraphics[width=.9\columnwidth]{SextantCatalog}
+}
+
+\onslide*<4>{ 
+\footnotesize World Ocean Atlas\\
+\url{https://www.nodc.noaa.gov/OC5/woa13/}\\
+\includegraphics[width=.9\columnwidth]{WOAcatalog}
+\vspace{.5cm}
+\includegraphics[width=.9\columnwidth]{WOApub}
+}
+
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+\begin{frame}[t]
+\frametitle{How to go from data to products?}
+
+\begin{columns}[T]
+\begin{column}{0.45\textwidth}
+\begin{itemize}
+\item<1-> Read the publication?
+\item<2-> Read the manual?
+\item<3-> Get linked code from publication
+\end{itemize}
+
+\end{column}
+\begin{column}{0.55\textwidth} 
+\onslide*<1>{
+\includegraphics[width=.9\columnwidth]{paperread}
+}
+
+\onslide*<2>{
+\includegraphics[width=.9\columnwidth]{RTFM_Whiteboard}
+
+\includegraphics[width=.9\columnwidth]{RTFM2.jpg}
+}
+
+\onslide*<3>{\footnotesize \doi{10.5194/gmd-10-765-2017}\\
+\includegraphics[width=.9\columnwidth]{PaperCode}
+
+\doi{10.5194/gmd-7-225-2014}\\
+\includegraphics[width=.9\columnwidth]{DivandPaper}
+}
+
+
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{A closer look to Zenodo}
+
+\onslide*<1>{\includegraphics[width=.8\textwidth]{zenodo1}}
+\onslide*<2>{\includegraphics[width=.8\textwidth]{zenodo2}}
+\onslide*<3>{\includegraphics[width=.8\textwidth]{zenodo4}}
+
+\vspace{.5cm}
+
+
+\onslide*<1>{Allows loggin with \textbf{GitHub} or \textbf{ORCID}}
+\onslide*<2>{Allows linking accounts with \textbf{GitHub} and \textbf{ORCID}}
+\onslide*<3>{Anything can be uploaded and cited}
+\end{frame}
+
+%------------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Generating DOI for software releases}
+
+\onslide*<1>{\includegraphics[width=.85\textwidth]{zenodo3}}
+\onslide*<2>{\includegraphics[width=.85\textwidth]{github1}}
+\onslide*<3>{\includegraphics[width=.85\textwidth]{github3}}
+\onslide*<4>{\includegraphics[width=.85\textwidth]{github_release1}}
+\onslide*<5>{\includegraphics[width=.85\textwidth]{github_release2}}
+\onslide*<6>{\includegraphics[width=.85\textwidth]{github_release3}}
+\onslide*<7>{\includegraphics[width=.85\textwidth]{github_release4}}
+\onslide*<8>{\includegraphics[width=.85\textwidth]{zenodo_release}}
+\onslide*<9>{\includegraphics[width=.85\textwidth]{zenodo_release2}}
+
+\vspace{.5cm}
+
+\onslide*<1>{Select \textbf{GitHub} repositories to be synced with Zenodo}
+\onslide*<2>{Go on your GitHub home page}
+\onslide*<3>{In settings: allow third-party access}
+\onslide*<4>{Open the project repository}
+\onslide*<5>{Click on the \textit{Release} button}
+\onslide*<6>{Fill in the information and \ldots}
+\onslide*<7>{\ldots make the release}
+\onslide*<8>{Check the project release on Zenodo and \ldots}
+\onslide*<9>{\ldots get the DOI badge}
+\end{frame}
+
+%------------------------------------------------------------------------------------------------
+
+
+\begin{frame}[t]
+\frametitle{Use-case: Diva releases}
+
+\begin{enumerate}
+\item<1-> Switch from SVN to GitHub (conserving the history) 
+\item<2-> Enable Diva repository on Zenodo
+\item<3-> Edit the different \textit{tags} on GitHub (otherwise DOI not generated) 
+\item<4-> To do? Include Diva corresponding DOI in product netCDF?
+\end{enumerate}
+\vspace{1cm}
+
+\onslide*<1>{\footnotesize
+Resources:
+\begin{itemize}
+\item \url{https://git-scm.com/book/en/v2/Git-and-Other-Systems-Migrating-to-Git}
+\item \url{http://john.albin.net/git/convert-subversion-to-git}
+\item \url{https://www.atlassian.com/git/tutorials/migrating-overview}
+\end{itemize}
+}
+
+\onslide*<2>{
+\includegraphics[width=.75\textwidth]{zenodoDiva}
+}
+
+\onslide*<3>{
+\includegraphics[width=.75\textwidth]{zenodoDiva2}
+}
+
+
+\end{frame}
+
+%------------------------------------------------------------------------------------------------
+
+
+
+\end{document}
