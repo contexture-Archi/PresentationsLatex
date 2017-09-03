@@ -1,30 +1,5 @@
 \input{GHER_ODIP_style.tex}
 
-\setbeamercovered{invisible}
-\setbeamertemplate{items}[triangle] 
-
-\setbeamercolor{title}{fg=white}
-\setbeamercolor{institute}{fg=mygrey}
-\setbeamercolor{alerted text}{fg=bluegher,bg=alertbg}
-
-\newenvironment{boxalertenv}{\begin{altenv}%
-      {\usebeamertemplate{alerted text begin}\usebeamercolor[fg]{alerted text}\usebeamerfont{alerted text}\colorbox{bg}}
-      {\usebeamertemplate{alerted text end}}{\color{.}}{}}{\end{altenv}}
-
-\newcommand<>{\boxalert}[1]{{%
-  \begin{boxalertenv}#2{#1}\end{boxalertenv}%
-}}
-
-
-\setbeamerfont{sectiontitle1}{size=\huge,family=\rmfamily}
-\setbeamerfont{sectiontitle2}{size=\fontsize{50}{20}\selectfont,shape=\itshape,family=\rmfamily}
-\setbeamerfont{author}{size=\large,family=\rmfamily}
-\setbeamerfont{institute}{size=\normalsize,family=\rmfamily}
-\setbeamerfont{title}{size=\fontsize{25}{20}\selectfont,shape=\itshape,family=\rmfamily}
-
-\setbeamertemplate{enumerate items}[square]
-\setbeamercolor{item projected}{bg=mygrey,fg=bluegher}
-
 \title{Emerging standards for ocean\\ data analysis \& visualisation}
 %\subtitle{}
 \author[C.~Troupin]{C.~Troupin, C.~Muñoz, S.~Watelet,\\ A.~Barth \& J.-M.~Beckers}

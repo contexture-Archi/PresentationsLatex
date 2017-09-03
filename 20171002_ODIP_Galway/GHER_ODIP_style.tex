@@ -1,4 +1,4 @@
-\documentclass[final,xcolor=table]{beamer}
+\documentclass[final,xcolor=table,svgnames]{beamer}
 \usepackage[english]{babel}
 %\usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
@@ -11,6 +11,7 @@
 \usepackage{fontawesome}
 \usepackage{academicons}
 \usepackage{fontspec}
+\usepackage{colortbl}
 
 
 \setmainfont{Gillius ADF No2}
@@ -21,7 +22,7 @@
 \graphicspath{
 {./figures/},
 {./figures/scientificprofiles/}
-{../../../figures4presentations/logo/},
+{/home/ctroupin/Presentations/figures4presentations/logo/},
 }
 
 
@@ -43,15 +44,61 @@
 \definecolor{alertbg}{HTML}{FEFFBA}
 
 \setbeamercolor{title}{fg=white}
+\setbeamercolor{institute}{fg=mygrey}
 \setbeamercolor{frametitle}{fg=white,bg=bluegher}
-\setbeamercolor{institute}{fg=bluegher}
 \setbeamercolor{structure}{fg=bluegher}
 \setbeamercolor{item projected}{fg=black}
+\setbeamercolor{alerted text}{fg=bluegher,bg=alertbg}
+
+\setbeamercovered{invisible}
+\setbeamertemplate{items}[triangle] 
+
+\newenvironment{boxalertenv}{\begin{altenv}%
+      {\usebeamertemplate{alerted text begin}\usebeamercolor[fg]{alerted text}\usebeamerfont{alerted text}\colorbox{bg}}
+      {\usebeamertemplate{alerted text end}}{\color{.}}{}}{\end{altenv}}
+
+\newcommand<>{\boxalert}[1]{{%
+  \begin{boxalertenv}#2{#1}\end{boxalertenv}%
+}}
+
+
+\setbeamerfont{sectiontitle1}{size=\huge,family=\rmfamily}
+\setbeamerfont{sectiontitle2}{size=\fontsize{40}{20}\selectfont,shape=\itshape,family=\rmfamily}
+\setbeamerfont{author}{size=\large,family=\rmfamily}
+\setbeamerfont{institute}{size=\normalsize,family=\rmfamily}
+\setbeamerfont{title}{size=\fontsize{25}{20}\selectfont,shape=\itshape,family=\rmfamily}
+
+\setbeamertemplate{enumerate items}[square]
+\setbeamercolor{item projected}{bg=alertbg,fg=bluegher}
+
+\setbeamertemplate{title page}{%
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=-30pt, xshift=-10pt]current page.north east) (author)
+  {\parbox[t]{.6\paperwidth}{\raggedleft%
+   \usebeamerfont{author}{\insertauthor}}};
+\node[anchor=north east] 
+  at ([yshift=-70pt, xshift=-10pt]current page.north east) (institute)
+  {\parbox[t]{.78\paperwidth}{\raggedleft%
+    \usebeamerfont{institute}\usebeamercolor[fg]{institute}{\insertinstitute}}};
+\node[anchor=south west] 
+  at ([yshift=20pt, xshift=20pt]current page.west) (logo)
+  {\parbox[t]{.19\paperwidth}{\centering%
+    \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic}};
+\node[anchor=east]
+  at ([yshift=-55pt,xshift=-20pt]current page.east) (title)
+  {\parbox[t]{\textwidth}{\raggedleft%
+   \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}};
+\end{tikzpicture}
+}
 
 %\setbeamersize{text margin left=1cm}
 
 \newlength{\logoH}
 \setlength{\logoH}{1cm}
+\newcommand{\montant}{\rule{0pt}{3ex}}
 
 %--------------------------------
 \hypersetup{bookmarksopen=true,
@@ -63,6 +110,7 @@ pdffitwindow=true,
 pdftoolbar=true,
 pdfmenubar=true,
 pdfwindowui=true,
+pdfsubject={ODIP, Data analysis, Software citation},
 pdfauthor={C. Troupin, C. Muñoz, S. Watelet, A. Barth, J.M. Beckers},
 bookmarksopenlevel=0,
 colorlinks=true,
