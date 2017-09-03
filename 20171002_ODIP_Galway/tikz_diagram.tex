@@ -1,0 +1,64 @@
+\input{GHER_ODIP_style.tex}
+\usetikzlibrary{automata,positioning}
+
+\tikzset{
+    vertex/.style = {
+        circle,
+        fill = black,
+        outer sep = 0pt,
+        inner sep = 1pt,
+    }
+}
+\begin{document}
+\begin{frame}
+\begin{tikzpicture}
+
+%\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.9\textwidth]{figures/im_back.png}};
+     
+%\draw[help lines,xstep=1,ystep=1] (0,0) grid (10,10);
+%\foreach \x in {0,1,...,9} { \node [anchor=north] at (\x,0) {\x}; }
+%\foreach \y in {0,1,...,9} { \node [anchor=east] at (0,\y) {\y}; }
+
+\node[fill=LightYellow,text=black] (OceanObservation)  at (1,7) {Ocean Observation};
+\node[fill=LightYellow,text=black] (GenerateDataset) at (1,5) {Generate Dataset};
+\node[fill=LightYellow,text=black] (DOIdata) at (1,3.5) {\aiDoi};
+
+\node[fill=DarkOrange,text=black] (ORCID) at (1,.5) {\aiOrcid};
+\node[fill=DarkOrange,text=black] (GitHub) at (4.5,.5) {\faGithub};
+\node[fill=LightSkyBlue,text=black] (Zenodo) at (4.5,2) {\includegraphics[height=.4cm]{figures/zenodo-black-200.png}}; 
+\node[fill=LightSkyBlue,text=black] (SourceCode) at (8,2) {Source Code};
+
+\node[fill=LightSkyBlue,text=black] (Software) at (5.5,5) {Software tool};
+\node[fill=LightSkyBlue,text=black] (DOIcode) at (4.5,3.5) {\aiDoi};
+
+\node[fill=LightGreen,text=black] (Publication) at (9,5) {Publication};
+\node[fill=LightGreen,text=black] (DOIpub) at (9,3.5) {\aiDoi};
+\node[fill=LightGreen,text=black] (Science) at (9,7) {Science};
+
+\draw node[vertex] (Joint) at (2.5,0.5) {};
+
+\draw[-] (ORCID) to (Joint);
+\draw[-] (GitHub) to (Joint);
+
+\path[->,>=stealth]
+(Publication)    edge (DOIpub)
+(Zenodo) edge (DOIcode)
+(Science) edge (Publication)
+(Joint) edge node[anchor=center, above,sloped] {\scriptsize Login} (Zenodo)
+(OceanObservation) edge (GenerateDataset)
+(GenerateDataset) edge (DOIdata)
+(GenerateDataset) edge node[anchor=center, above] {\scriptsize Analysis} (Software)
+(Software) edge[in=90,out=0] (SourceCode)
+(Software) edge node[anchor=center, above] {\scriptsize Results} (Publication)
+(SourceCode) edge node[anchor=center, above] {\scriptsize Upload} (Zenodo)
+(SourceCode) edge[in=0,out=-90] node[anchor=center, above, sloped] {\scriptsize Upload} (GitHub);
+
+\onslide<2>{
+\path[->,>=stealth,line width=1.5pt]
+(DOIdata) edge[in=180,out=0] (Publication)
+(DOIcode) edge[in=180,out=0] (Publication);
+}
+ 
+\end{tikzpicture}
+\end{frame}
+\end{document}
