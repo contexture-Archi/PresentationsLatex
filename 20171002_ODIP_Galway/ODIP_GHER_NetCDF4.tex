@@ -1,0 +1,215 @@
+\input{GHER_ODIP_style.tex}
+
+
+\title{Experiences with using\\ netCDF 4}
+\author[C.~Troupin]{C.~Troupin, C.~Muñoz, S.~Watelet,\\ A.~Barth \& J.-M.~Beckers}
+\institute{GHER-University of Liège\\ SOCIB}
+\date{Galway (Ireland), 2-6 October, 2017}
+\titlegraphic{\includegraphics[height=\logoheight]{logo_odip2}
+\includegraphics[height=\logoheight]{logo_uliege.jpeg}\\
+\includegraphics[height=\logoheight]{logo_gher}
+\includegraphics[height=\logoheight]{logo_socib}}
+%\url{www.socib.es}}
+  
+\urlstyle{rm}
+
+\begin{document}
+
+\begin{frame}
+\maketitle
+\end{frame}
+
+
+\begin{frame}
+\frametitle{NetCDF = network Common Data Form (not format!)}
+
+\onslide*<2>{Wrongly written:\\
+\vspace{1.5cm}
+
+IPPC:\\
+ \url{http://www.ipcc-data.org/help/formats.html}\\
+Ocean Color:\\
+ \url{https://oceancolor.gsfc.nasa.gov/docs/format/l2nc/}\\
+NASA Earth Data:\\
+ \url{https://earthdata.nasa.gov/user-resources/acronym-list}
+}
+
+\onslide*<3>{
+Correct spelling according to \href{http://www.unidata.ucar.edu/software/netcdf/docs/BestPractices.html}{Unidata Best practices}:
+
+\begin{description}
+ \item[netCDF:] Original spelling of the name of the data model, API, and format. \\
+ CDF part capitalized in part to pay homage to the NASA "CDF" data model
+ \item[netcdf:] Used in certain file names, such as:\\
+ \begin{texttt}
+ \#include <netcdf.h>
+ \end{texttt}
+ \item[NetCDF:] Used in titles and at the beginning of sentences, where "netCDF" is awkward or violates style guidelines.
+\end{description}
+}
+
+
+ 
+\end{frame}
+
+\begin{frame}
+\frametitle{NetCDF = software libraries and self-describing, machine-independent data formats}
+
+\begin{description}
+\item<1-2>[CF-netCDF] OGC standard 
+
+\item<1-2>[Version~4] released in \ldots \onslide<2->{{\Large 2008!}}
+
+\item[What's new?]
+\onslide<1-2>{HDF5 as a storage layer}\\
+\onslide<1-2>{use of groups}\\
+\onslide<1-2>{user-defined types}\\
+\onslide<1-2>{multiple unlimited dimensions}\\
+\onslide<1-3>{compression}\\
+\onslide<1-3>{data chunking} \onslide<3>{\hfill $\rightarrow$ benchmarks}\\ 
+\onslide<1-2>{parallel I/O\\
+\ldots}
+\end{description}
+
+%As of July 2017, the latest releases are 4.4.1.1 for netCDF-C and 4.4.4 for netCDF-Fortran.
+%Nowadays, most of the programming languages (see Table below), visualisation and processing tools (see Table in Comparison of standards) are able to read and write this format. This is why we believe it is time to push for a more generalised use of netCDF-4 and its features for oceanographic data management.
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+{\usebackgroundtemplate{\tikz\node[opacity=0.2] {\includegraphics[width=\paperwidth]{figures/emodnet-ammonium}};}
+
+\begin{frame}
+\frametitle{Benchmark: WMS ​GetMap requests in Oceanbrowser}
+
+\parskip=.25cm
+
+\onslide*<1>{Surface concentration of ammonium in the Mediterranean
+
+WMS GetMap is performed\\
+and generate a 512 x 512 PNG image
+
+Data are chunked over time\\
+(every time frame is compressed independently)
+
+The image is generated 1000 times\\
+and the median time is computed. 
+
+Deactivated WMS tile cache\\
+(designed to optimise the delivery of images)
+}
+
+\onslide*<2->{
+
+\begin{figure}
+\onslide*<2>{File size vs. deflation level
+
+\includegraphics[height=.7\textheight]{tile_size.png}}
+\onslide*<3>{Close-up view
+
+\includegraphics[height=.7\textheight]{tile_size_clip.png}
+
+}
+\onslide*<4>{Time vs. deflation level
+
+\includegraphics[height=.7\textheight]{WMS_tile_time.png}}
+\end{figure}
+}
+
+\end{frame}
+
+}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Benchmark: results}
+\begin{enumerate}
+\item File size reduced by a factor of \boxalert{38}\\
+(from 574M to 15M)\\
+with deflation level 1
+\item File size reduced by \boxalert{20\%}\\
+ at deflation level 4
+\item \textit{Shuffling} reduces the file size even more
+\item Compression slightly increases WMS map generation time\\
+with shuffling: $<$5\%\\
+without shuffling: $<2$\%
+\end{enumerate}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+\section{NetCDF usage}
+
+\begin{frame}
+\frametitle{Programing languages: netCDF4 is there!}
+\begin{table}
+\begin{tabular}{rl}
+\toprule
+Language 	& 		Package/module installation \\
+\midrule
+\includegraphics[height=3ex]{logo_python}		& 		\url{https://github.com/Unidata/netcdf4-python}\\
+Fortran											& 		\url{https://github.com/Unidata/netcdf-fortran}\\
+C												& 		\url{https://github.com/Unidata/netcdf-c}\\
+\includegraphics[height=3ex]{logo_java}			& 		\url{https://github.com/Unidata/thredds}\\
+\includegraphics[height=3ex]{logo_javascript}	& 		\url{https://www.npmjs.com/package/netcdf4}\\
+\includegraphics[height=3ex]{logo-octave}		&		\url{https://github.com/Alexander-Barth/octave-netcdf}\\
+\includegraphics[height=3ex]{logo_julia}		&  		\url{https://github.com/meggart/NetCDF.jl}\\
+Matlab											&		Native support since R2010b\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Visualisation and analysis tools: comparison}
+
+% 
+\onslide*<1>{
+
+\begin{table}
+
+\end{table}
+
++ link to web version \url{https://github.com/gher-ulg/ODIP/blob/master/netCDFtools.md}}
+
+\onslide*<2>{
+
+\begin{enumerate}
+\item Many possibilities for quick visualisation of NetCDF
+
+\item Most of these software tools can work with simple text files
+
+\item The majority can deal with netCDF4 (import/export)
+
+\item 8 out of 11 software tools can also import netCDF via ​OPeNDAP​
+\end{enumerate}
+
+}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
+  {\parbox[t]{.6\paperwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle1}{Final conclusion:}}};
+\node[anchor=east]
+  at ([yshift=-50pt,xshift=-20pt]current page.east) (title2)
+  {\parbox[t]{\textwidth}{
+   \usebeamerfont{sectiontitle2}\usebeamercolor[fg]{title}{push for the use\\
+    of netCDF-4}}};
+\end{tikzpicture}
+\end{frame}
+
+
+\end{document}
