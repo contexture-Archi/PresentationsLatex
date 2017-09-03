@@ -56,9 +56,11 @@ Correct spelling according to \href{http://www.unidata.ucar.edu/software/netcdf/
 \frametitle{NetCDF = software libraries and self-describing, machine-independent data formats}
 
 \begin{description}
-\item<1-2>[CF-netCDF] OGC standard 
+\item<1-2>[OGC standards] ~\\
+netCDF since \textbf{2011}\\
+Climate and Forecast (CF) extension since \textbf{2013}
 
-\item<1-2>[Version~4] released in \ldots \onslide<2->{{\Large 2008!}}
+\item<1-2>[Version~4] released in \onslide*<1>{\ldots} \onslide<2->{\textbf{2008!}}
 
 \item[What's new?]
 \onslide<1-2>{HDF5 as a storage layer}\\
@@ -165,22 +167,79 @@ Matlab											&		Native support since R2010b\\
 
 %-----------------------------------------------------------------------------------------------
 
-\begin{frame}
+\begin{frame}[t]
 \frametitle{Visualisation and analysis tools: comparison}
+
+\footnotesize
+
+\begin{overlayarea}{\textwidth}{2.5cm}
+\onslide*<1>{Tools}
+\onslide*<2>{Error estimation}
+\onslide*<3>{Interpolation or analysis?}
+\onslide*<4>{Maximum dimensions}
+\onslide*<5>{netCDF as input}
+\onslide*<6>{netCDF as output}
+\onslide*<7>{OGC compliance}
+
+
+\end{overlayarea}
+
+
+
+\begin{table}
+\scriptsize
+\begin{tabular}{cccccc}
+
+
+
+\rowcolor{LightBlue}\onslide*<1->{IDL			& ODV 		& IDV 		& (arc)GIS 	& DIVA 		& divand} \\
+&&&&&\\
+\onslide*<1>{			&			&			&			&			&		 }
+\onslide*<2>{No			&	Yes		&	No		&	No		&	Yes		&	Yes	 }
+\onslide*<3>{Int./Anl. & Int./Anl. & Int. & Int./Anl. & Anl. & Anl.}
+\onslide*<4>{2D (3D if inv. dist.)& 2D & 2D & 2D & 2D & nD}
+\onslide*<5>{Yes & Yes & Yes & Yes & Yes & No }
+\onslide*<6>{Yes & Yes & No & Yes & Yes & Yes }
+\onslide*<7>{Yes ? & ? & No ? & Yes & ? & ?}
+
+\\&&&&&\\
+\rowcolor{LightBlue}\onslide*<1->{Diva-on-web & SURFER 	& Ferret 	& GNU R 	& Panoply &	 }\\
+&&&&&\\
+\onslide*<1>{			&			&			&			&			&		 }
+\onslide*<2>{Yes		&	No		&	No		&	No		&	No		&		 }
+\onslide*<3>{Int./Anl. & Int./Anl. & Int. & Int./Anl. & Anl. & Anl.}
+\onslide*<4>{2D & 2D & 4D & 2D & 2D &}
+\onslide*<5>{No & Yes & Yes & Yes & Yes & No}
+\onslide*<6>{Yes & Yes & Yes & Yes & Yes & No }
+\onslide*<7>{Yes   & ? & ? & ? & No? &}
+
+\\&&&&&\\
+
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Visualisation and analysis tools: summary}
 
 % 
 \onslide*<1>{
 
-\begin{table}
+Table available at {\footnotesize \url{https://github.com/gher-ulg/ODIP/blob/master/netCDFtools.md}}
 
-\end{table}
+\includegraphics[width=.7\textwidth]{netcdf_table.png}
 
-+ link to web version \url{https://github.com/gher-ulg/ODIP/blob/master/netCDFtools.md}}
+}
 
 \onslide*<2>{
 
 \begin{enumerate}
 \item Many possibilities for quick visualisation of NetCDF
+
+\item Not easy to assess OGC compliance
 
 \item Most of these software tools can work with simple text files
 
