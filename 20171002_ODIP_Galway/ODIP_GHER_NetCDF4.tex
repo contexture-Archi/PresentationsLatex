@@ -23,7 +23,7 @@
 \begin{frame}
 \frametitle{NetCDF = network Common Data Form (not format!)}
 
-\onslide*<2>{Wrongly written:\\
+\onslide*<2>{Wrongly written: \hfill \includegraphics[height=.75cm]{troll.png}\\
 \vspace{1.5cm}
 
 IPPC:\\
@@ -252,6 +252,16 @@ Table available at {\footnotesize \url{https://github.com/gher-ulg/ODIP/blob/mas
 
 \end{frame}
 
+\begin{frame}
+\frametitle{Conclusions}
+\parskip .5cm
+
+\textbf{Reasonable trade-off:} level-5 compression without shuffling
+
+\textbf{Implication:} users downloading directly the netCDF files need to have the netCDF4 and HDF5 libraries with compression enabled in order to be able to read them
+
+\end{frame}
+
 %-----------------------------------------------------------------------------------------------
 
 \begin{frame}
@@ -261,7 +271,7 @@ Table available at {\footnotesize \url{https://github.com/gher-ulg/ODIP/blob/mas
 \node[anchor=east] 
   at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
   {\parbox[t]{.6\paperwidth}{\raggedleft%
-   \usebeamerfont{sectiontitle1}{Final conclusion:}}};
+   \usebeamerfont{sectiontitle1}{Final message:}}};
 \node[anchor=east]
   at ([yshift=-50pt,xshift=-20pt]current page.east) (title2)
   {\parbox[t]{\textwidth}{
