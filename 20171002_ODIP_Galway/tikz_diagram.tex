@@ -19,41 +19,57 @@
 %\foreach \x in {0,1,...,9} { \node [anchor=north] at (\x,0) {\x}; }
 %\foreach \y in {0,1,...,9} { \node [anchor=east] at (0,\y) {\y}; }
 
+\onslide<1->{
 \node[fill=LightYellow,text=black] (OceanObservation)  at (1,7) {Ocean Observation};
-\node[fill=LightYellow,text=black] (GenerateDataset) at (1,5) {Generate Dataset};
-\node[fill=LightYellow,text=black] (DOIdata) at (1,3.5) {\aiDoi};
-
-\node[fill=DarkOrange,text=black] (ORCID) at (1,.5) {\aiOrcid};
-\node[fill=DarkOrange,text=black] (GitHub) at (4.5,.5) {\faGithub};
-\node[fill=LightSkyBlue,text=black] (Zenodo) at (4.5,2) {\includegraphics[height=.4cm]{figures/zenodo-black-200.png}}; 
-\node[fill=LightSkyBlue,text=black] (SourceCode) at (8,2) {Source Code};
-
-\node[fill=LightSkyBlue,text=black] (Software) at (5.5,5) {Software tool};
-\node[fill=LightSkyBlue,text=black] (DOIcode) at (4.5,3.5) {\aiDoi};
-
-\node[fill=LightGreen,text=black] (Publication) at (9,5) {Publication};
-\node[fill=LightGreen,text=black] (DOIpub) at (9,3.5) {\aiDoi};
 \node[fill=LightGreen,text=black] (Science) at (9,7) {Science};
 
-\draw node[vertex] (Joint) at (2.5,0.5) {};
+}
 
+\onslide<2->{
+\node[fill=LightYellow,text=black] (GenerateDataset) at (1,5) {Generate Dataset};
+\draw[->,>=stealth] (OceanObservation) edge (GenerateDataset);
+}
+
+\onslide<3->{
+\node[fill=LightSkyBlue,text=black] (Software) at (5.5,5) {Software tool};
+\node[fill=LightGreen,text=black] (Publication) at (9,5) {Publication};
+\draw[->,>=stealth] (Science) edge (Publication);
+\draw[->,>=stealth] (GenerateDataset) edge node[anchor=center, above] {\scriptsize Analysis} (Software);
+\draw[->,>=stealth] (Software) edge node[anchor=center, above] {\scriptsize Results} (Publication);
+}
+
+\onslide<4->{
+\node[fill=LightYellow,text=black] (DOIdata) at (1,3.5) {\aiDoi};
+\node[fill=LightGreen,text=black] (DOIpub) at (9,3.5) {\aiDoi};
+\draw[->,>=stealth](GenerateDataset) edge (DOIdata);
+\draw[->,>=stealth](Publication) edge (DOIpub);
+}
+
+\onslide<5->{
+\node[fill=DarkOrange,text=black] (GitHub) at (4.5,.5) {\faGithub};
+\node[fill=LightSkyBlue,text=black] (SourceCode) at (8,2) {Source Code};
+\draw[->,>=stealth](SourceCode) edge[in=0,out=-90] node[anchor=center, above, sloped] {\scriptsize Upload} (GitHub);
+\draw[->,>=stealth](Software) edge[in=90,out=0] (SourceCode);
+}
+
+\onslide<6->{
+\node[fill=DarkOrange,text=black] (ORCID) at (1,.5) {\aiOrcid};
+\node[fill=LightSkyBlue,text=black] (Zenodo) at (4.5,2) {\includegraphics[height=.4cm]{figures/zenodo-black-200.png}}; 
+\draw node[vertex] (Joint) at (2.5,0.5) {};
+\draw[->,>=stealth](Software)(Joint) edge node[anchor=center, above,sloped] {\scriptsize Login} (Zenodo);
 \draw[-] (ORCID) to (Joint);
 \draw[-] (GitHub) to (Joint);
+}
 
+
+\onslide<7->{
+\node[fill=LightSkyBlue,text=black] (DOIcode) at (4.5,3.5) {\aiDoi};
 \path[->,>=stealth]
-(Publication)    edge (DOIpub)
-(Zenodo) edge (DOIcode)
-(Science) edge (Publication)
-(Joint) edge node[anchor=center, above,sloped] {\scriptsize Login} (Zenodo)
-(OceanObservation) edge (GenerateDataset)
-(GenerateDataset) edge (DOIdata)
-(GenerateDataset) edge node[anchor=center, above] {\scriptsize Analysis} (Software)
-(Software) edge[in=90,out=0] (SourceCode)
-(Software) edge node[anchor=center, above] {\scriptsize Results} (Publication)
-(SourceCode) edge node[anchor=center, above] {\scriptsize Upload} (Zenodo)
-(SourceCode) edge[in=0,out=-90] node[anchor=center, above, sloped] {\scriptsize Upload} (GitHub);
+(Software)(Zenodo) edge (DOIcode)
+(SourceCode) edge node[anchor=center, above] {\scriptsize Upload} (Zenodo);
+}
 
-\onslide<2>{
+\onslide<8>{
 \path[->,>=stealth,line width=1.5pt]
 (DOIdata) edge[in=180,out=0] (Publication)
 (DOIcode) edge[in=180,out=0] (Publication);
