@@ -12,11 +12,16 @@
 \usepackage{academicons}
 \usepackage{fontspec}
 \usepackage{colortbl}
+\usepackage{tabularx}
+
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X} 
+\newcolumntype{L}{>{\raggedright\arraybackslash}X} 
 
 
 \setmainfont{Gillius ADF No2}
 
 \newcommand{\logoheight}{1cm}
+\newcommand{\yestab}{{\cellcolor{LightGreen} Yes}}
 
 \DeclareGraphicsExtensions{.pdf,.png,.PNG,.JPG,.jpg,.jpeg,.gif}
 \graphicspath{
@@ -67,6 +72,8 @@
 \setbeamerfont{author}{size=\large,family=\rmfamily}
 \setbeamerfont{institute}{size=\normalsize,family=\rmfamily}
 \setbeamerfont{title}{size=\fontsize{25}{20}\selectfont,shape=\itshape,family=\rmfamily}
+\setbeamerfont{projected text}{size=\normalsize,family=\rmfamily}
+
 
 \setbeamertemplate{enumerate items}[square]
 \setbeamercolor{item projected}{bg=alertbg,fg=bluegher}

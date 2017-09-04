@@ -1,0 +1,124 @@
+\input{GHER_ODIP_style.tex}
+
+\title{Software citation \& \newline process traceability}
+%\subtitle{}
+\author[C.~Troupin]{C.~Troupin$^{\star}$, C.~Muñoz$^{\ast}$,\\S.~Watelet$^{\star}$, A.~Barth$^{\star}$ \& J.-M.~Beckers$^{\star}$}
+
+\institute{$^{\star}$GHER-University of Liège
+
+$^{\ast}$Balearic Islands Coastal Ocean\\ Observing and Forecasting System}
+
+\date{Galway (Ireland), 2-6 October, 2017}
+\titlegraphic{\includegraphics[height=\logoheight]{logo_odip2}
+\includegraphics[height=\logoheight]{logo_uliege.jpeg}\\
+\includegraphics[height=\logoheight]{logo_gher}
+\includegraphics[height=\logoheight]{logo_socib}}
+ 
+ \tikzset{
+    vertex/.style = {
+        circle,
+        fill = black,
+        outer sep = 0pt,
+        inner sep = 1pt,
+    }
+}
+
+\begin{document}
+
+\begin{frame}[c]
+
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
+  {\parbox[t]{.6\paperwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle2}{Software citation }}};
+\node[anchor=east]
+  at ([yshift=-35pt,xshift=-20pt]current page.east) (title2)
+  {\parbox[t]{\textwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle1}\usebeamercolor[fg]{title}{with GitHub and Zenodo}}};
+\end{tikzpicture}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{A closer look to Zenodo}
+
+\onslide*<1>{\includegraphics[width=.8\textwidth]{zenodo1}}
+\onslide*<2>{\includegraphics[width=.8\textwidth]{zenodo2}}
+\onslide*<3>{\includegraphics[width=.8\textwidth]{zenodo4}}
+
+\vspace{.5cm}
+
+
+\onslide*<1>{Allows loggin with \textbf{GitHub} or \textbf{ORCID}}
+\onslide*<2>{Allows linking accounts with \textbf{GitHub} and \textbf{ORCID}}
+\onslide*<3>{Anything can be uploaded and cited}
+\end{frame}
+
+%------------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Generating DOI for software releases}
+
+\onslide*<1>{\includegraphics[width=.85\textwidth]{zenodo3}}
+\onslide*<2>{\includegraphics[width=.85\textwidth]{github1}}
+\onslide*<3>{\includegraphics[width=.85\textwidth]{github3}}
+\onslide*<4>{\includegraphics[width=.85\textwidth]{github_release1}}
+\onslide*<5>{\includegraphics[width=.85\textwidth]{github_release2}}
+\onslide*<6>{\includegraphics[width=.85\textwidth]{github_release3}}
+\onslide*<7>{\includegraphics[width=.85\textwidth]{github_release4}}
+\onslide*<8>{\includegraphics[width=.85\textwidth]{zenodo_release}}
+\onslide*<9>{\includegraphics[width=.85\textwidth]{zenodo_release2}}
+
+\vspace{.5cm}
+
+\onslide*<1>{Select \textbf{GitHub} repositories to be synced with Zenodo}
+\onslide*<2>{Go on your GitHub home page}
+\onslide*<3>{In settings: allow third-party access}
+\onslide*<4>{Open the project repository}
+\onslide*<5>{Click on the \textit{Release} button}
+\onslide*<6>{Fill in the information and \ldots}
+\onslide*<7>{\ldots make the release}
+\onslide*<8>{Check the project release on Zenodo and \ldots}
+\onslide*<9>{\ldots get the DOI badge}
+\end{frame}
+
+%------------------------------------------------------------------------------------------------
+
+
+\begin{frame}[t]
+\frametitle{Use-case: Diva releases}
+
+\begin{enumerate}
+\item<1-> Switch from SVN to GitHub (conserving the history) 
+\item<2-> Enable Diva repository on Zenodo
+\item<3-> Edit the different \textit{tags} on GitHub (otherwise DOI not generated) 
+\item<4-> To do? Include Diva corresponding DOI in product netCDF?
+\end{enumerate}
+\vspace{1cm}
+
+\onslide*<1>{\footnotesize
+Resources:
+\begin{itemize}
+\item \url{https://git-scm.com/book/en/v2/Git-and-Other-Systems-Migrating-to-Git}
+\item \url{http://john.albin.net/git/convert-subversion-to-git}
+\item \url{https://www.atlassian.com/git/tutorials/migrating-overview}
+\end{itemize}
+}
+
+\onslide*<2>{
+\includegraphics[width=.75\textwidth]{zenodoDiva}
+}
+
+\onslide*<3>{
+\includegraphics[width=.75\textwidth]{zenodoDiva2}
+}
+
+
+\end{frame}
+
+\end{document}

@@ -103,7 +103,8 @@ what about}}};
 \begin{frame}
 \frametitle{Context: who has done what, and how?}
 
-\onslide<2>{Let's work with ORCID}\\[1cm]
+\onslide<2>{Let's work with ORCID\\
+§see previous ODIP workshops}\\[1cm]
 
 
 
@@ -148,11 +149,11 @@ what about}}};
 %-----------------------------------------------------------------------------------------------
 
 \begin{frame}[c]
-\frametitle{Data and data sets identification citation}
+\frametitle{Data set identification and citation}
 
-\onslide*<1>{
 See previous ODIP workshops + links to other initiatives 
 \begin{itemize}
+\footnotesize
 \item[] \href{https://www.rd-alliance.org/groups/data-citation-wg.html}{Research Data Alliance} Data Citation working group
 \item[] \href{http://www.project-thor.eu/}{THOR project}
 \item[] \href{https://www.pangaea.de/}{Pangaea}
@@ -160,24 +161,76 @@ See previous ODIP workshops + links to other initiatives
 
 \begin{figure}
 \centering
-\includegraphics[width=.6\textwidth]{MedGibData}
+\includegraphics[width=.8\textwidth]{MedGibData}
 \end{figure}
-}
-
-\onslide*<2>{Data set in peer-reviewed journals 
-
-\begin{itemize}
-\item[] \href{http://www.earth-syst-sci-data.net}{Earth System Science Data}\\
-"\textit{\footnotesize reuse of high-quality data of benefit to Earth system sciences}"\\
-30 articles in 2017 (as of July 24th)
-\item[] \href{https://www.nature.com/sdata/}{Scientific Data}\\
-"\textit{\footnotesize promote wider data sharing and reuse, and to credit those that share}"\\
-106 publications in 2017 (all disciplines)
-\end{itemize}
-}
 
 \end{frame}
 
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}[c]
+\frametitle{Data sets in peer-reviewed journals}
+
+\onslide*<1>{
+\href{http://www.earth-syst-sci-data.net}{Earth System Science Data}
+\begin{itemize}
+\footnotesize
+\item "\textit{reuse of high-quality data of benefit to Earth system sciences}"
+\item 30 articles in 2017 (as of July 24th)
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=.9\textwidth]{MedGibPaper}
+\end{figure}
+}
+
+\onslide*<2>{\href{https://www.nature.com/sdata/}{Scientific Data}
+\begin{itemize}
+\footnotesize
+\item "\textit{promote wider data sharing and reuse, and to credit those that share}"
+\item 127 publications in 2017 as of September 4 (all disciplines)
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=.9\textwidth]{scientificdata_journal}
+\end{figure}
+
+}
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+\begin{frame}[t]
+\frametitle{How to go from data to products?}
+
+\begin{columns}[T]
+\begin{column}{0.45\textwidth}
+\begin{itemize}
+\item<2-> Read the publication?
+\item<3-> Read the manual?
+\item<4-> Get and re-use code referenced in publication
+\end{itemize}
+
+\end{column}
+\begin{column}{0.55\textwidth} 
+\onslide*<2>{
+\includegraphics[width=.9\columnwidth]{paperread}
+}
+
+\onslide*<3>{
+\includegraphics[width=.9\columnwidth]{RTFM_Whiteboard}
+
+\includegraphics[width=.9\columnwidth]{RTFM2.jpg}
+}
+
+\onslide*<4>{
+\includegraphics[width=.9\columnwidth]{PaperCode}
+}
+\end{column}
+\end{columns}
+
+\end{frame}
 %-----------------------------------------------------------------------------------------------
 
 \begin{frame}
@@ -294,255 +347,135 @@ doi: \href{http://dx.doi.org/10.5281/zenodo.836727}{10.5281/zenodo.836727}}"
 \begin{figure}
 \centering
 \includegraphics[width=.8\textwidth]{Mio_paper}\\
-\scriptsize \doi{10.1016/j.mio.2016.05.001}
+\scriptsize \doi{10.1016/j.mio.2016.05.001}\\
+\faBomb discontinued as of 2017
+\end{figure}
+}
+
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Software tools and methods: Research platforms}
+
+\onslide*<1>{	
+
+\begin{description}
+\item[Definition:] online infrastructures whose objective is to persistently store and archive digital artifacts\\
+ relevant to research:
+\begin{itemize}
+\footnotesize
+\item articles
+\item data
+\item images
+\item code
+\item \ldots
+\end{itemize}
+\end{description}
+
+}
+
+\onslide*<2>{
+
+\href{https://figshare.com}{Figshare}: "improve the organization of users' research"
+\begin{itemize}
+\footnotesize
+
+\item file upload, collaborative spaces, DOI attribution, \ldots 
+\item on the platform: figures, datasets, media (including video), papers (including pre-prints), posters, code, and filesets.
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=.9\textwidth]{figshare_example.png}\\
+\scriptsize \url{https://figshare.com/articles/CNR-ISMAR_in_situ_observations_network/4001448}
 \end{figure}
 
-{\scriptsize \faBomb discontinued as of 2017}
-
-}
-
-
-
-
-
-
-\end{frame}
-
-%-----------------------------------------------------------------------------------------------
-\section{Notebooks}
-
-\begin{frame}[c]
-
-\begin{tikzpicture}[remember picture,overlay]
-\fill[bluegher]
-  (current page.west) rectangle (current page.south east);
-\node[anchor=east] 
-  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
-  {\parbox[t]{.6\paperwidth}{\raggedleft%
-   \usebeamerfont{sectiontitle2}{Notebooks}}};
-\node[anchor=east]
-  at ([yshift=-35pt,xshift=-20pt]current page.east) (title2)
-  {\parbox[t]{\textwidth}{\raggedleft%
-   \usebeamerfont{sectiontitle1}\usebeamercolor[fg]{title}{for documenting work-flows
-}}};
-\end{tikzpicture}
-
-\end{frame}
-
-
-
-
-
-
-\end{document}
-
-
-
-%-----------------------------------------------------------------------------------------------
-\begin{frame}[t]
-\frametitle{Where is the data?}
-
-\begin{columns}[T]
-\begin{column}{0.6\textwidth}
-\begin{itemize}
-\item<1-> Institutional portals
-\item<2-> International portals
-\item<3-> Paper + portal 
-\item<4-> Personal disk?
-\end{itemize}
-
-\end{column}
-\begin{column}{0.4\textwidth} 
-\onslide*<1>{
-\includegraphics[width=.85\columnwidth]{Corioliscatalog}
-
-\includegraphics[width=.85\columnwidth]{AODNcatalog.png}
-
-\includegraphics[width=.85\columnwidth]{SOCIBcatalog}
-}
-\onslide*<2>{
-\includegraphics[width=.85\columnwidth]{SeaDataNet}
-
-\includegraphics[width=.85\columnwidth]{EMODnet}
-
-\includegraphics[width=.85\columnwidth]{CMEMScatalog}
-}
-
-\onslide*<3>{\footnotesize
-\doi{10.5194/essd-8-141-2016}\\
-\includegraphics[width=.85\columnwidth]{MedGibPaper}
-\vspace{.5cm}
-\doi{10.1594/PANGAEA.853701}\\
-\includegraphics[width=.85\columnwidth]{MedGibData}
-
-
-}
-\onslide*<4>{\includegraphics[width=.9\columnwidth]{results.jpg}}
-\end{column}
-\end{columns}
-\end{frame}
-
-
-
-%-----------------------------------------------------------------------------------------------
-\begin{frame}[t]
-\frametitle{Where are the results/products?}
-
-\begin{columns}[T]
-\begin{column}{0.45\textwidth}
-\begin{itemize}
-\item<2-> Personal disks
-\item<3-> Product catalog
-\item<4-> Web page + PDF reports to be cited
-\end{itemize}
-\vspace{1cm}
-
-\onslide*<3>{\footnotesize DOI not always used, but rather an "Internal permanent shortname"\\
-ex: 4b65b074-19a2-11e5-95c0-8056f28224bb
-}
-
-\end{column}
-\begin{column}{0.55\textwidth} 
-\onslide*<2>{
-\includegraphics[width=.9\columnwidth]{results.jpg}
 }
 
 \onslide*<3>{
-\includegraphics[width=.9\columnwidth]{EMODnetChemCatalog}
-\vspace{.5cm}
-\includegraphics[width=.9\columnwidth]{SextantCatalog}
-}
 
-\onslide*<4>{ 
-\footnotesize World Ocean Atlas\\
-\url{https://www.nodc.noaa.gov/OC5/woa13/}\\
-\includegraphics[width=.9\columnwidth]{WOAcatalog}
-\vspace{.5cm}
-\includegraphics[width=.9\columnwidth]{WOApub}
-}
-
-\end{column}
-\end{columns}
-
-\end{frame}
-
-%-----------------------------------------------------------------------------------------------
-\begin{frame}[t]
-\frametitle{How to go from data to products?}
-
-\begin{columns}[T]
-\begin{column}{0.45\textwidth}
+\href{http://www.dspace.org/}{DSpace}
 \begin{itemize}
-\item<1-> Read the publication?
-\item<2-> Read the manual?
-\item<3-> Get linked code from publication
+\footnotesize
+\item has to be installed on a server manager by the search institution
+\item Sandbox: \url{http://demo.dspace.org/}
+\end{itemize}
+\vspace{.5cm}
+
+According to the \href{http://roar.eprints.org/}{Registry of Open Access Repositories (ROAR)}
+\begin{description}
+\item[1759] institutions or companies as users
+\item[1374] repositories dedicated to Institutional or Departmental Research
+\item[32] repositories dedicated to Research Data
+\item[3] dedicated to Open and Linked Data
+\end{description}
+}
+
+\onslide*<4>{
+\href{https://ckan.org/}{Comprehensive Knowledge Archive Network (CKAN)}:\\
+can be considered as a tool for making open data websites
+\begin{itemize}
+\footnotesize
+\item streamline publishing, sharing, finding and using data
+\item used by numerous governments, organisations and communities around the world
+\item has to be installed on a server manager by the search institution
+\end{itemize}
+}
+
+\onslide*<5>{
+\href{https://zenodo.org/}{Zenodo}: research data repository\\
+funded by the European Commission
+\begin{itemize}
+\footnotesize
+\item ingest all research outputs and any file format
+\item DOIs assigned to have uniquely citable files
+\item integrated into reporting lines for research via OpenAIRE.
 \end{itemize}
 
-\end{column}
-\begin{column}{0.55\textwidth} 
-\onslide*<1>{
-\includegraphics[width=.9\columnwidth]{paperread}
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{zenodo_matplotlib}
+\end{figure}
+
 }
-
-\onslide*<2>{
-\includegraphics[width=.9\columnwidth]{RTFM_Whiteboard}
-
-\includegraphics[width=.9\columnwidth]{RTFM2.jpg}
-}
-
-\onslide*<3>{\footnotesize \doi{10.5194/gmd-10-765-2017}\\
-\includegraphics[width=.9\columnwidth]{PaperCode}
-
-\doi{10.5194/gmd-7-225-2014}\\
-\includegraphics[width=.9\columnwidth]{DivandPaper}
-}
-
-
-\end{column}
-\end{columns}
 
 \end{frame}
-
-%------------------------------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{A closer look to Zenodo}
+\frametitle{Comparison}
 
-\onslide*<1>{\includegraphics[width=.8\textwidth]{zenodo1}}
-\onslide*<2>{\includegraphics[width=.8\textwidth]{zenodo2}}
-\onslide*<3>{\includegraphics[width=.8\textwidth]{zenodo4}}
+\begin{table}
+\scriptsize
+\begin{tabularx}{\textwidth}{@{}c L L L L @{}}
+\rowcolor{LightYellow} Tool 		& 	CKAN		& DSpace		& 	Figshare 	& Zenodo	\\
+Open Source 						&  \yestab		& \yestab		& No			& \yestab	\\
+\faGithub							& ckan/ckan 	& DSpace/DSpace & -- 			& zenodo/zenodo	\\
+Licence								& Affero GNU GPL v3.0 & BSD 	& -- 			& GPL-2.0		\\
+1st released						& November 2011	& November 2002 & January 2011 	& May 2013 		\\
+Main technology 					& Python		& Java 			& --			& Python		\\
+Deployment							& Local			& Local			& Cloud			& Cloud			\\
+Integration with \faGithub 			& No	 		& No			& \yestab 		& \yestab		\\
+Integration with \aiOrcid			& \yestab	 	& Not direct 	& \yestab 		& Login			\\
+\end{tabularx}
+\end{table}
 
-\vspace{.5cm}
-
-
-\onslide*<1>{Allows loggin with \textbf{GitHub} or \textbf{ORCID}}
-\onslide*<2>{Allows linking accounts with \textbf{GitHub} and \textbf{ORCID}}
-\onslide*<3>{Anything can be uploaded and cited}
-\end{frame}
-
-%------------------------------------------------------------------------------------------------
-
-\begin{frame}
-\frametitle{Generating DOI for software releases}
-
-\onslide*<1>{\includegraphics[width=.85\textwidth]{zenodo3}}
-\onslide*<2>{\includegraphics[width=.85\textwidth]{github1}}
-\onslide*<3>{\includegraphics[width=.85\textwidth]{github3}}
-\onslide*<4>{\includegraphics[width=.85\textwidth]{github_release1}}
-\onslide*<5>{\includegraphics[width=.85\textwidth]{github_release2}}
-\onslide*<6>{\includegraphics[width=.85\textwidth]{github_release3}}
-\onslide*<7>{\includegraphics[width=.85\textwidth]{github_release4}}
-\onslide*<8>{\includegraphics[width=.85\textwidth]{zenodo_release}}
-\onslide*<9>{\includegraphics[width=.85\textwidth]{zenodo_release2}}
-
-\vspace{.5cm}
-
-\onslide*<1>{Select \textbf{GitHub} repositories to be synced with Zenodo}
-\onslide*<2>{Go on your GitHub home page}
-\onslide*<3>{In settings: allow third-party access}
-\onslide*<4>{Open the project repository}
-\onslide*<5>{Click on the \textit{Release} button}
-\onslide*<6>{Fill in the information and \ldots}
-\onslide*<7>{\ldots make the release}
-\onslide*<8>{Check the project release on Zenodo and \ldots}
-\onslide*<9>{\ldots get the DOI badge}
-\end{frame}
-
-%------------------------------------------------------------------------------------------------
-
-
-\begin{frame}[t]
-\frametitle{Use-case: Diva releases}
+\onslide<2>{Choice for further tests: Zenodo
 
 \begin{enumerate}
-\item<1-> Switch from SVN to GitHub (conserving the history) 
-\item<2-> Enable Diva repository on Zenodo
-\item<3-> Edit the different \textit{tags} on GitHub (otherwise DOI not generated) 
-\item<4-> To do? Include Diva corresponding DOI in product netCDF?
+\footnotesize
+\item Free and open software
+\item Cloud service, i.e. no installation
+\item Coupling with GitHub
+\item Login via ORCID
 \end{enumerate}
-\vspace{1cm}
 
-\onslide*<1>{\footnotesize
-Resources:
-\begin{itemize}
-\item \url{https://git-scm.com/book/en/v2/Git-and-Other-Systems-Migrating-to-Git}
-\item \url{http://john.albin.net/git/convert-subversion-to-git}
-\item \url{https://www.atlassian.com/git/tutorials/migrating-overview}
-\end{itemize}
-}
-
-\onslide*<2>{
-\includegraphics[width=.75\textwidth]{zenodoDiva}
-}
-
-\onslide*<3>{
-\includegraphics[width=.75\textwidth]{zenodoDiva2}
 }
 
 
 \end{frame}
-
-%------------------------------------------------------------------------------------------------
 
 
 
