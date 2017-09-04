@@ -1,39 +1,26 @@
 \input{GHER_ODIP_style.tex}
 
-\title{Emerging standards for ocean\\ data analysis \& visualisation}
+\title{Software citation \& \newline process traceability}
 %\subtitle{}
-\author[C.~Troupin]{C.~Troupin, C.~Muñoz, S.~Watelet,\\ A.~Barth \& J.-M.~Beckers}
-\institute{GHER-University of Liège\\ SOCIB}
+\author[C.~Troupin]{C.~Troupin$^{\star}$, C.~Muñoz$^{\ast}$,\\S.~Watelet$^{\star}$, A.~Barth$^{\star}$ \& J.-M.~Beckers$^{\star}$}
+
+\institute{$^{\star}$GHER-University of Liège
+
+$^{\ast}$Balearic Islands Coastal Ocean\\ Observing and Forecasting System}
+
 \date{Galway (Ireland), 2-6 October, 2017}
 \titlegraphic{\includegraphics[height=\logoheight]{logo_odip2}
 \includegraphics[height=\logoheight]{logo_uliege.jpeg}\\
 \includegraphics[height=\logoheight]{logo_gher}
 \includegraphics[height=\logoheight]{logo_socib}}
-%\url{www.socib.es}}
-  
-\urlstyle{rm}
-
-\setbeamertemplate{title page}{%
-\begin{tikzpicture}[remember picture,overlay]
-\fill[bluegher]
-  (current page.west) rectangle (current page.south east);
-\node[anchor=east] 
-  at ([yshift=-30pt, xshift=-10pt]current page.north east) (author)
-  {\parbox[t]{.6\paperwidth}{\raggedleft%
-   \usebeamerfont{author}{\insertauthor}}};
-\node[anchor=north east] 
-  at ([yshift=-70pt, xshift=-10pt]current page.north east) (institute)
-  {\parbox[t]{.78\paperwidth}{\raggedleft%
-    \usebeamerfont{institute}\usebeamercolor[fg]{institute}{\insertinstitute}}};
-\node[anchor=south west] 
-  at ([yshift=20pt, xshift=20pt]current page.west) (logo)
-  {\parbox[t]{.19\paperwidth}{\centering%
-    \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic}};
-\node[anchor=east]
-  at ([yshift=-55pt,xshift=-20pt]current page.east) (title)
-  {\parbox[t]{\textwidth}{\raggedleft%
-   \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}};
-\end{tikzpicture}
+ 
+ \tikzset{
+    vertex/.style = {
+        circle,
+        fill = black,
+        outer sep = 0pt,
+        inner sep = 1pt,
+    }
 }
 
 \begin{document}
@@ -42,109 +29,51 @@
 \maketitle
 \end{frame}
 
-%-----------------------------------------------------------------------------------------------
-\section{netCDF4}
-
+%--------------------------------------------------------------------------------------------------------------
 \begin{frame}
-\begin{tikzpicture}[remember picture,overlay]
-\fill[bluegher]
-  (current page.west) rectangle (current page.south east);
-\node[anchor=east] 
-  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
-  {\parbox[t]{.6\paperwidth}{\raggedleft%
-   \usebeamerfont{sectiontitle1}{A few words about}}};
-\node[anchor=east]
-  at ([yshift=-35pt,xshift=-20pt]current page.east) (title2)
-  {\parbox[t]{\textwidth}{\raggedleft%
-   \usebeamerfont{sectiontitle2}\usebeamercolor[fg]{title}{netCDF4}}};
+\frametitle{Persistent identifier everywhere}
+\begin{tikzpicture}
+
+%\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.9\textwidth]{figures/im_back.png}};
+     
+%\draw[help lines,xstep=1,ystep=1] (0,0) grid (10,10);
+%\foreach \x in {0,1,...,9} { \node [anchor=north] at (\x,0) {\x}; }
+%\foreach \y in {0,1,...,9} { \node [anchor=east] at (0,\y) {\y}; }
+
+\onslide<1->{
+\node[fill=LightYellow,text=black] (OceanObservation)  at (1,7) {Ocean Observation};
+\node[fill=LightGreen,text=black] (Science) at (9,7) {Science};
+
+}
+
+\onslide<2->{
+\node[fill=LightYellow,text=black] (GenerateDataset) at (1,5) {Generate Dataset};
+\draw[->,>=stealth] (OceanObservation) edge (GenerateDataset);
+}
+
+\onslide<3->{
+\node[fill=LightSkyBlue,text=black] (Software) at (5.5,5) {Software tool};
+\node[fill=LightGreen,text=black] (Publication) at (9,5) {Publication};
+\draw[->,>=stealth] (Science) edge (Publication);
+\draw[->,>=stealth] (GenerateDataset) edge node[anchor=center, above] {\scriptsize Analysis} (Software);
+\draw[->,>=stealth] (Software) edge node[anchor=center, above] {\scriptsize Results} (Publication);
+}
+
+\onslide<4->{
+\node[fill=LightYellow,text=black] (DOIdata) at (1,3.5) {\aiDoi};
+\node[fill=LightGreen,text=black] (DOIpub) at (9,3.5) {\aiDoi};
+\draw[->,>=stealth](GenerateDataset) edge (DOIdata);
+\draw[->,>=stealth](Publication) edge (DOIpub);
+}
+ 
 \end{tikzpicture}
-\end{frame}
-
-\begin{frame}
-\frametitle{NetCDF = software libraries and self-describing, machine-independent data formats}
-
-\begin{description}
-\item[CF-netCDF] OGC standard 
-
-\item[NetCDF-4:] 1st released in \ldots \onslide<2->{{\Large 2008!}}
-
-\item[What's new?]
-HDF5 as a storage layer\\
-use of groups\\
-user-defined types\\
-multiple unlimited dimensions\\
-\boxalert{compression}\\
-\boxalert{data chunking}\\ 
-parallel I/O\\
-\ldots 
-\end{description}
 
 
-%As of July 2017, the latest releases are 4.4.1.1 for netCDF-C and 4.4.4 for netCDF-Fortran.
-%Nowadays, most of the programming languages (see Table below), visualisation and processing tools (see Table in Comparison of standards) are able to read and write this format. This is why we believe it is time to push for a more generalised use of netCDF-4 and its features for oceanographic data management.
+\onslide<5>{
+How can we ensure the readers/users\\
+ can \alert{reproduce} the results?
+}
 
-\end{frame}
-%-----------------------------------------------------------------------------------------------
-
-
-\begin{frame}
-\frametitle{Programing languages: netCDF4 is there!}
-\begin{table}
-\begin{tabular}{rl}
-\toprule
-Language 	& 		Package/module installation \\
-\midrule
-\includegraphics[height=3ex]{logo_python}		& 		\url{https://github.com/Unidata/netcdf4-python}\\
-Fortran											& 		\url{https://github.com/Unidata/netcdf-fortran}\\
-C												& 		\url{https://github.com/Unidata/netcdf-c}\\
-\includegraphics[height=3ex]{logo_javascript}	& 		\url{https://www.npmjs.com/package/netcdf4}\\
-\includegraphics[height=3ex]{logo-octave}		&		\url{https://github.com/Alexander-Barth/octave-netcdf}\\
-\includegraphics[height=3ex]{logo_julia}		&  		\url{https://github.com/meggart/NetCDF.jl}\\
-Matlab											&		Since R2010b: native support\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-
-\end{frame}
-
-%-----------------------------------------------------------------------------------------------
-
-\begin{frame}
-\frametitle{Benchmark: WMS ​GetMap request in Oceanbrowser}
-\begin{figure}
-\centering
-%\onslide*<1>{\includegraphics[width=\textwidth]{}}
-%\onslide*<2>{\includegraphics[width=\textwidth]{}}
-%\onslide*<3>{\includegraphics[width=\textwidth]{}}
-\end{figure}
-
-\end{frame}
-
-%-----------------------------------------------------------------------------------------------
-
-\begin{frame}
-\frametitle{Benchmark: results}
-\begin{enumerate}
-\item File size reduced by a factor of \boxalert{38}\\
-(from 574M to 15M)\\
-with deflation level 1
-\item File size reduced by \boxalert{20\%} at deflation level 4
-\item \textit{Shuffling} reduces the file size even more
-\item Compression slightly increases WMS map generation time\\
-with shuffling: $<$5\%\\
-without shuffling: $<2$\%
-\end{enumerate}
-
-\end{frame}
-
-%-----------------------------------------------------------------------------------------------
-
-\begin{frame}
-\frametitle{Message}
-\huge
-Push for the use of\\
-netCDF\usebeamerfont{title}{4}
 \end{frame}
 
 
@@ -174,8 +103,7 @@ what about}}};
 \begin{frame}
 \frametitle{Context: who has done what, and how?}
 
-
-\onslide<2>{Let's keep one}\\[1cm]
+\onslide<2>{Let's work with ORCID}\\[1cm]
 
 
 
@@ -217,6 +145,168 @@ what about}}};
 {\footnotesize Source: \href{http://jpswalsh.github.io/academicons/}{Academicons}}
 
 \end{frame}
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}[c]
+\frametitle{Data and data sets identification citation}
+
+\onslide*<1>{
+See previous ODIP workshops + links to other initiatives 
+\begin{itemize}
+\item[] \href{https://www.rd-alliance.org/groups/data-citation-wg.html}{Research Data Alliance} Data Citation working group
+\item[] \href{http://www.project-thor.eu/}{THOR project}
+\item[] \href{https://www.pangaea.de/}{Pangaea}
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=.6\textwidth]{MedGibData}
+\end{figure}
+}
+
+\onslide*<2>{Data set in peer-reviewed journals 
+
+\begin{itemize}
+\item[] \href{http://www.earth-syst-sci-data.net}{Earth System Science Data}\\
+"\textit{\footnotesize reuse of high-quality data of benefit to Earth system sciences}"\\
+30 articles in 2017 (as of July 24th)
+\item[] \href{https://www.nature.com/sdata/}{Scientific Data}\\
+"\textit{\footnotesize promote wider data sharing and reuse, and to credit those that share}"\\
+106 publications in 2017 (all disciplines)
+\end{itemize}
+}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Products and results}
+
+\onslide*<1>{
+\textbf{Results=} \\
+numerical model outputs (re-analysis, forecasts)\\
+climatologies build from in situ data\\
+aggregated datasets
+
+\vspace{1cm}
+
+\textbf{Goals:} \\
+proper citation in publications\\
+control of different versions of the same product
+}
+
+\onslide*<2>{
+\textbf{Example:} SeaDataNet Product Catalog (\href{http://sextant.ifremer.fr/en/web/seadatanet/}{Sextant})\\
+Mediterranean Sea: Temperature and Salinity Climatology V1.1
+
+\begin{figure}
+\centering
+\includegraphics[width=.95\textwidth]{sextant_medsea}
+\end{figure}
+
+\begin{itemize}
+\footnotesize
+\item Internal permanent shortname: {\texttt 90ae7a06-8b08-4afe-83dd-ca92bc99f5c0}
+\item DOI: \href{http://dx.doi.org/10.12770/90ae7a06-8b08-4afe-83dd-ca92bc99f5c0}{10.12770/90ae7a06-8b08-4afe-83dd-ca92bc99f5c0}
+\end{itemize}
+}
+
+\onslide*<3>{
+
+% A new version of such a product (climatology) would happen if the aggregated data set is updated or if another version of the software is employed. 
+\begin{figure}
+\centering
+\begin{tikzpicture}[spy using outlines={rectangle,red,magnification=5,width=8.cm,height=1cm, connect spies}]
+\node[anchor=south west,inner sep=0] (image) at (0,0) {\pgfimage[interpolate=true,width=.7\textwidth]{figures/sextant_medsea3.png}};
+
+\begin{scope}[x={(image.south east)},y={(image.north west)}]
+    %\draw[help lines,xstep=.1,ystep=.1] (0,0) grid (1.2,1.2);
+    %\foreach \x in {0,1,...,12} { \node [anchor=north] at (\x/10,0) {0.\x}; }
+    %\foreach \y in {0,1,...,12} { \node [anchor=east] at (0,\y/10) {0.\y}; }
+    \coordinate (center) at (.44, .43);
+    \coordinate (pos spy) at (.65,.15);
+\onslide<2->{\spy on (center) in node [] at (pos spy);}
+\end{scope}
+
+\end{tikzpicture}
+\end{figure}
+
+Can we go further and have:\\
+"\textit{The version used for the DIVA software is the 4.6.9,\\
+doi: \href{http://dx.doi.org/10.5281/zenodo.836727}{10.5281/zenodo.836727}}"
+?
+}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Software tools and methods: journals}
+
+\onslide*<1>{
+\href{https://www.geoscientific-model-development.net/)}{Geoscientific Model Development}
+\begin{itemize}
+\footnotesize 
+\it
+\item "description, development, and evaluation of numerical models\\ of the Earth system and its components"
+\item "geoscientific model descriptions, from statistical models\\ to box models to GCMs"
+\item "Inclusion of Code and/or data availability sections\\ is mandatory for all papers"
+%"May include a \textbf{user manual} and actual \textbf{code} (as supplementary information)."
+%"Submission of short papers describing subsequent model development and \textbf{bug-fixes} will be encouraged."
+\end{itemize}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{GMD_divand}\\
+\scriptsize \doi{10.5194/gmd-7-225-2014}
+\end{figure}
+}
+
+\onslide*<2>{
+\href{https://link.springer.com/journal/12145}{Earth Science Informatics}
+\begin{itemize}
+\footnotesize 
+\it 
+\item "(...) cutting-edge, and provocative scientific work\\ in the area of Earth Science Informatics (...)"
+\item "(...) all aspects of computer applications to the acquisition, storage, processing, interchange, and visualization of data"
+\item Sub-disciplines: Ontology, Simulation and Modeling, Information Systems Applications
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Esin_paper}\\
+\scriptsize \doi{10.1007/s12145-016-0266-2}
+\end{figure}
+}
+
+\onslide*<3>{
+\href{https://www.journals.elsevier.com/methods-in-oceanography}{Methods in Oceanography}
+\begin{itemize}
+\footnotesize 
+\it 
+\item "original research on new methods in all aspects of oceanographic research"
+\item "significant advances in the development of new methods for the interpretation of either existing or future data"
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Mio_paper}\\
+\scriptsize \doi{10.1016/j.mio.2016.05.001}
+\end{figure}
+
+{\scriptsize \faBomb discontinued as of 2017}
+
+}
+
+
+
+
+
+
+\end{frame}
 
 %-----------------------------------------------------------------------------------------------
 \section{Notebooks}
@@ -239,26 +329,6 @@ what about}}};
 
 \end{frame}
 
-%-----------------------------------------------------------------------------------------------
-\section{Data analysis and visualisation}
-\begin{frame}[c]
-
- 
-
-\begin{tikzpicture}[remember picture,overlay]
-\fill[bluegher]
-  (current page.west) rectangle (current page.south east);
-\node[anchor=east] 
-  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
-  {\parbox[t]{.6\paperwidth}{\raggedleft%
-   \usebeamerfont{sectiontitle1}{Tools for}}};
-\node[anchor=east]
-  at ([yshift=-55pt,xshift=-20pt]current page.east) (title2)
-  {\parbox[t]{\textwidth}{\raggedleft%
-   \usebeamerfont{sectiontitle2}\usebeamercolor[fg]{title}{data analysis \& visualisation}}};
-\end{tikzpicture}
-
-\end{frame}
 
 
 
@@ -267,40 +337,6 @@ what about}}};
 \end{document}
 
 
-%-----------------------------------------------------------------------------------------------
-\begin{frame}[c]
-\frametitle{Where are the scientific results?}
-
-One paper = one DOI but\ldots \\
-not only \textbf{results} are published in papers
-
-\vspace{1cm}
-
-\onslide<2->{\href{http://www.geoscientific-model-development.net}{Geoscientific Model Development}:}
-
-\begin{itemize}
-\footnotesize
-\item<3-> "May include a \textbf{user manual} and actual \textbf{code} (as supplementary information)."
-
-\item<4-> "Submission of short papers describing subsequent model development and \textbf{bug-fixes} will be encouraged."
-
-\item<5->[]= Traceability and Reproducibility
-
-\end{itemize}
-
-
-\onslide<6->{\href{http://www.earth-syst-sci-data.net}{Earth System Science Data}}
-
-\begin{itemize}
-\footnotesize
-\item<7-> "(\ldots) publication of articles on \textbf{original research data} (sets), furthering the reuse of high-quality data of benefit to Earth system sciences."
-
-\item<8-> "Any interpretation of data is outside the scope of regular articles."
-
-
-\end{itemize}
-
-\end{frame}
 
 %-----------------------------------------------------------------------------------------------
 \begin{frame}[t]
