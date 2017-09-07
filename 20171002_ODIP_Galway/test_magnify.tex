@@ -1,0 +1,27 @@
+\input{GHER_ODIP_style.tex}
+\usepackage{pgfplots}
+\usepackage{pgfpages}
+
+\usetikzlibrary{spy,calc}
+\usetikzlibrary{automata,positioning}
+\usepackage{subcaption}
+
+\begin{document}
+\begin{figure}
+\centering
+\begin{tikzpicture}[spy using outlines={rectangle,red,magnification=5,width=8.cm,height=1cm, connect spies}]
+\node[anchor=south west,inner sep=0] (image) at (0,0) {\pgfimage[interpolate=true,width=.7\textwidth]{figures/sextant_medsea3.png}};
+
+\begin{scope}[x={(image.south east)},y={(image.north west)}]
+    %\draw[help lines,xstep=.1,ystep=.1] (0,0) grid (1.2,1.2);
+    %\foreach \x in {0,1,...,12} { \node [anchor=north] at (\x/10,0) {0.\x}; }
+    %\foreach \y in {0,1,...,12} { \node [anchor=east] at (0,\y/10) {0.\y}; }
+    \coordinate (center) at (.44, .43);
+    \coordinate (pos spy) at (.65,.15);
+\onslide<2->{\spy on (center) in node [] at (pos spy);}
+\end{scope}
+
+\end{tikzpicture}
+\end{figure}
+
+\end{document}

@@ -15,7 +15,8 @@
 \usepackage{tabularx}
 
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X} 
-\newcolumntype{L}{>{\raggedright\arraybackslash}X} 
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
 
 
 \setmainfont{Gillius ADF No2}
@@ -45,6 +46,7 @@
 
 \definecolor{bluegher}{HTML}{4E519F}
 \definecolor{mygrey}{rgb}{0.75,.75,.75}
+\definecolor{commentcolor}{rgb}{0.75,.75,.75}
 \definecolor{arrowcolor}{rgb}{0.1,0.1,0.1}
 \definecolor{alertbg}{HTML}{FEFFBA}
 
@@ -106,6 +108,7 @@
 \newlength{\logoH}
 \setlength{\logoH}{1cm}
 \newcommand{\montant}{\rule{0pt}{3ex}}
+\newcommand{\comment}[1]{\hfill\textcolor{commentcolor}{#1}}
 
 %--------------------------------
 \hypersetup{bookmarksopen=true,

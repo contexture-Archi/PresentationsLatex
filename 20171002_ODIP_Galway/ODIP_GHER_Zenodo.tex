@@ -2,11 +2,11 @@
 
 \title{Software citation \& \newline process traceability}
 %\subtitle{}
-\author[C.~Troupin]{C.~Troupin$^{\star}$, C.~Muñoz$^{\ast}$,\\S.~Watelet$^{\star}$, A.~Barth$^{\star}$ \& J.-M.~Beckers$^{\star}$}
+\author[C.~Troupin]{C.~Troupin$^{\star}$, C.~Muñoz$^{\ast}$\\ Contributions by M.A.~Rújula$^{\ast}$, J.~Fernández$^{\ast}$, A.~Barth$^{\star}$ \& J.-M.~Beckers$^{\star}$}
 
-\institute{$^{\star}$GHER-University of Liège
+\institute{$^{\star}$GHER - University of Liège
 
-$^{\ast}$Balearic Islands Coastal Ocean\\ Observing and Forecasting System}
+$^{\ast}$SOCIB Data Centre}
 
 \date{Galway (Ireland), 2-6 October, 2017}
 \titlegraphic{\includegraphics[height=\logoheight]{logo_odip2}
@@ -26,6 +26,102 @@ $^{\ast}$Balearic Islands Coastal Ocean\\ Observing and Forecasting System}
 \begin{document}
 
 \begin{frame}[c]
+\maketitle
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+\section{Context of software citation}
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
+  {\parbox[t]{.6\paperwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle2}{Motivations:}}};
+\node[anchor=east]
+  at ([yshift=-35pt,xshift=-20pt]current page.east) (title2)
+  {\parbox[t]{\textwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle1}\usebeamercolor[fg]{title}{Reproducibility \& Traceability}}};
+\end{tikzpicture}
+
+\end{frame}
+
+%--------------------------------------------------------------------------------
+\begin{frame}
+\begin{tikzpicture}
+
+%\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.9\textwidth]{figures/im_back.png}};
+     
+%\draw[help lines,xstep=1,ystep=1] (0,0) grid (10,10);
+%\foreach \x in {0,1,...,9} { \node [anchor=north] at (\x,0) {\x}; }
+%\foreach \y in {0,1,...,9} { \node [anchor=east] at (0,\y) {\y}; }
+
+\onslide<1>{
+\node[fill=LightYellow,text=black] (OceanObservation)  at (1,7) {Ocean Observation};
+\node[fill=LightGreen,text=black] (Science) at (9,7) {Science};
+\node[fill=LightYellow,text=black] (GenerateDataset) at (1,5) {Generate Dataset};
+\draw[->,>=stealth] (OceanObservation) edge (GenerateDataset);
+
+\node[fill=LightSkyBlue,text=black] (Software) at (5.5,5) {Software tool};
+\node[fill=LightGreen,text=black] (Publication) at (9,5) {Publication};
+\draw[->,>=stealth] (Science) edge (Publication);
+\draw[->,>=stealth] (GenerateDataset) edge node[anchor=center, above] {\scriptsize Analysis} (Software);
+\draw[->,>=stealth] (Software) edge node[anchor=center, above] {\scriptsize Results} (Publication);
+
+\node[fill=LightYellow,text=black] (DOIdata) at (1,3.5) {\aiDoi};
+\node[fill=LightGreen,text=black] (DOIpub) at (9,3.5) {\aiDoi};
+\draw[->,>=stealth](GenerateDataset) edge (DOIdata);
+\draw[->,>=stealth](Publication) edge (DOIpub);
+\node[fill=LightSkyBlue,text=black] (SourceCode) at (8,2) {Source Code};
+\draw[->,>=stealth](Software) edge[in=90,out=0] (SourceCode);
+}
+
+\onslide<1-2>{
+\node[fill=DarkOrange,text=black] (GitHub) at (4.5,.5) {\faGithub};
+\node[fill=LightSkyBlue,text=black] (SourceCode) at (8,2) {Source Code};
+\draw[->,>=stealth](SourceCode) edge[in=0,out=-90] node[anchor=center, above, sloped] {\scriptsize Upload} (GitHub);
+\node[fill=DarkOrange,text=black] (ORCID) at (1,.5) {\aiOrcid};
+\node[fill=LightSkyBlue,text=black] (Zenodo) at (4.5,2) {\includegraphics[height=.4cm]{figures/zenodo-black-200.png}}; 
+\draw node[vertex] (Joint) at (2.5,0.5) {};
+\draw[->,>=stealth](Software)(Joint) edge node[anchor=center, above,sloped] {\scriptsize Login} (Zenodo);
+\draw[-] (ORCID) to (Joint);
+\draw[-] (GitHub) to (Joint);
+\node[fill=LightSkyBlue,text=black] (DOIcode) at (4.5,3.5) {\aiDoi};
+\path[->,>=stealth]
+(Zenodo) edge (DOIcode)
+(SourceCode) edge node[anchor=center, above] {\scriptsize Upload} (Zenodo);
+}
+
+
+\end{tikzpicture}
+\end{frame}
+
+%--------------------------------------------------------------------------------
+\begin{frame}[c]
+\frametitle{Goals}
+
+\begin{description}
+\item[Reproducibility:] \textbf{IF} same experiment \\
+identical parameters\\
+same dataset\\
+same model\\
+\textbf{THEN} same results
+\item[Traceability:] all the elements used in the analysis/experiment: \\
+accessible\\
+properly described\\
+uniquely identified
+\end{description}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+\section{Zenodo platform}
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
 
 \begin{tikzpicture}[remember picture,overlay]
 \fill[bluegher]
@@ -33,62 +129,260 @@ $^{\ast}$Balearic Islands Coastal Ocean\\ Observing and Forecasting System}
 \node[anchor=east] 
   at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
   {\parbox[t]{.6\paperwidth}{\raggedleft%
-   \usebeamerfont{sectiontitle2}{Software citation }}};
+   \usebeamerfont{sectiontitle2}{A closer look}}};
 \node[anchor=east]
   at ([yshift=-35pt,xshift=-20pt]current page.east) (title2)
   {\parbox[t]{\textwidth}{\raggedleft%
-   \usebeamerfont{sectiontitle1}\usebeamercolor[fg]{title}{with GitHub and Zenodo}}};
+   \usebeamerfont{sectiontitle1}\usebeamercolor[fg]{title}{to Zenodo}}};
 \end{tikzpicture}
 
 \end{frame}
 
+%-----------------------------------------------------------------------------------------------
 
+\begin{frame}[c]
+\frametitle{Login: 3 options}
 
-\begin{frame}
-\frametitle{A closer look to Zenodo}
+\begin{enumerate}
+\item Use \faGithub~account
+\item Use \aiOrcid~account
+\item Create new \faUser~(Sign~Up)
+\end{enumerate}
 
-\onslide*<1>{\includegraphics[width=.8\textwidth]{zenodo1}}
-\onslide*<2>{\includegraphics[width=.8\textwidth]{zenodo2}}
-\onslide*<3>{\includegraphics[width=.8\textwidth]{zenodo4}}
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{zenodo1}
+\end{figure}
 
-\vspace{.5cm}
-
-
-\onslide*<1>{Allows loggin with \textbf{GitHub} or \textbf{ORCID}}
-\onslide*<2>{Allows linking accounts with \textbf{GitHub} and \textbf{ORCID}}
-\onslide*<3>{Anything can be uploaded and cited}
 \end{frame}
 
-%------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------
 
-\begin{frame}
-\frametitle{Generating DOI for software releases}
+\begin{frame}[c]
+\frametitle{Main page: linked accounts}
 
-\onslide*<1>{\includegraphics[width=.85\textwidth]{zenodo3}}
-\onslide*<2>{\includegraphics[width=.85\textwidth]{github1}}
-\onslide*<3>{\includegraphics[width=.85\textwidth]{github3}}
-\onslide*<4>{\includegraphics[width=.85\textwidth]{github_release1}}
-\onslide*<5>{\includegraphics[width=.85\textwidth]{github_release2}}
-\onslide*<6>{\includegraphics[width=.85\textwidth]{github_release3}}
-\onslide*<7>{\includegraphics[width=.85\textwidth]{github_release4}}
-\onslide*<8>{\includegraphics[width=.85\textwidth]{zenodo_release}}
-\onslide*<9>{\includegraphics[width=.85\textwidth]{zenodo_release2}}
+\begin{figure}
+\centering
+\includegraphics[width=.95\textwidth]{zenodo2}
+\end{figure}
 
-\vspace{.5cm}
-
-\onslide*<1>{Select \textbf{GitHub} repositories to be synced with Zenodo}
-\onslide*<2>{Go on your GitHub home page}
-\onslide*<3>{In settings: allow third-party access}
-\onslide*<4>{Open the project repository}
-\onslide*<5>{Click on the \textit{Release} button}
-\onslide*<6>{Fill in the information and \ldots}
-\onslide*<7>{\ldots make the release}
-\onslide*<8>{Check the project release on Zenodo and \ldots}
-\onslide*<9>{\ldots get the DOI badge}
 \end{frame}
 
-%------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------
 
+\begin{frame}[c]
+\frametitle{Upload: you can drop anything}
+
+\begin{figure}
+\centering
+\includegraphics[width=.9\textwidth]{zenodo4}
+\end{figure}
+
+In particular: Software \comment{ (ok for stable code)}
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+\begin{frame}[c]
+\frametitle{Upload: add metadata}
+
+\begin{figure}
+\centering
+\includegraphics[width=.9\textwidth]{zenodo_edit}
+\end{figure}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}[c]
+\frametitle{Upload metadata: licence}
+
+\begin{figure}
+\centering
+\includegraphics[width=.9\textwidth]{zenodo_license}
+\end{figure}
+\vspace{.5cm}
+
+Not necessarily Open!
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+\begin{frame}[c]
+\frametitle{Upload metadata: funding!}
+
+\begin{figure}
+\centering
+\includegraphics<1>[width=.9\textwidth]{zenodo_funding_zoom.png}
+\includegraphics<2>[width=.9\textwidth]{openaire}
+\end{figure}
+
+\vfill
+
+Common strategy for SeaDataCloud, ODIP, \ldots tools?
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}[c]
+\frametitle{Upload: finish}
+
+\begin{figure}
+\centering
+\includegraphics[width=.9\textwidth]{zenodo_finish}
+\end{figure}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+\section{Zenodo and GitHub platform}
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
+  {\parbox[t]{.6\paperwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle2}{Zenodo \& Github}}};
+\node[anchor=east]
+  at ([yshift=-35pt,xshift=-20pt]current page.east) (title2)
+  {\parbox[t]{\textwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle1}\usebeamercolor[fg]{title}{working hand in hand}}};
+\end{tikzpicture}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}[c]
+\frametitle{Requirements}
+
+\begin{enumerate}
+\item \faGithub~or \aiOrcid account
+\item Source code
+\end{enumerate}
+
+\vspace{1cm}
+
+\begin{tikzpicture}
+\node[fill=DarkOrange,text=black] (GitHub) at (4.5,.5) {\faGithub};
+\node[fill=LightSkyBlue,text=black] (SourceCode) at (8,2) {Source Code};
+\draw[->,>=stealth](SourceCode) edge[in=0,out=-90] node[anchor=center, above, sloped] {\scriptsize Upload} (GitHub);
+\node[fill=DarkOrange,text=black] (ORCID) at (1,.5) {\aiOrcid};
+\node[fill=LightSkyBlue,text=black] (Zenodo) at (4.5,2) {\includegraphics[height=.4cm]{figures/zenodo-black-200.png}}; 
+\draw node[vertex] (Joint) at (2.5,0.5) {};
+\draw[->,>=stealth](Software)(Joint) edge node[anchor=center, above,sloped] {\scriptsize Login} (Zenodo);
+\draw[-] (ORCID) to (Joint);
+\draw[-] (GitHub) to (Joint);
+\node[fill=LightSkyBlue,text=black] (DOIcode) at (4.5,3.5) {\aiDoi};
+\path[->,>=stealth]
+(Zenodo) edge (DOIcode)
+(SourceCode) edge node[anchor=center, above] {\scriptsize Upload} (Zenodo);
+\end{tikzpicture}
+\end{frame}
+
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Generating \aiDoi~for software releases}
+
+\onslide*<1>{In Zenodo: click on the GitHub tab}
+\onslide*<2>{In Zenodo: turn on the synchronisation\\ for the selected \faGithub~repositories}
+\onslide*<3>{Go on your \faGithub~home page}
+\onslide*<4>{In settings: allow third-party access}
+\onslide*<5>{Open the selected project repository}
+\onslide*<6>{Click on the \textit{Release} button}
+\onslide*<7>{Fill in the information and \ldots}
+\onslide*<8>{\ldots make the release}
+\onslide*<9>{Check the project release on Zenodo and \ldots}
+\onslide*<10>{\ldots get the \aiDoi~badge \comment{and celebrate}}
+
+\vfill
+
+\onslide*<1>{\includegraphics[width=.85\textwidth]{zenodo_github_tab}}
+\onslide*<2>{\includegraphics[width=.85\textwidth]{zenodo3}}
+\onslide*<3>{\includegraphics[width=.85\textwidth]{github1}}
+\onslide*<4>{\includegraphics[width=.85\textwidth]{github3}}
+\onslide*<5>{\includegraphics[width=.85\textwidth]{github_release1}}
+\onslide*<6>{\includegraphics[width=.85\textwidth]{github_release2}}
+\onslide*<7>{\includegraphics[width=.85\textwidth]{github_release3}}
+\onslide*<8>{\includegraphics[width=.85\textwidth]{github_release4}}
+\onslide*<9>{\includegraphics[width=.85\textwidth]{zenodo_release}}
+\onslide*<10>{\includegraphics[width=.85\textwidth]{zenodo_release2}}
+
+\end{frame}
+
+
+%------------------------------------------------------------------------------------------------
+\section{Use case 1: Diva}
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
+  {\parbox[t]{.6\paperwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle2}{Use case I}}};
+\node[anchor=east]
+  at ([yshift=-35pt,xshift=-20pt]current page.east) (title2)
+  {\parbox[t]{\textwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle1}\usebeamercolor[fg]{title}{get DOI for Diva releases}}};
+\end{tikzpicture}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}[c]
+\frametitle{Diva (simplified) development history}
+
+\begin{description}
+\item[1990’s:] Variational Interpolation Method (Fortran 77)\\
+only 2D interpolations
+\item[2006] SeaDataNet, code refactory and set of bash scripts 
+\item[2007] \faPlug~with ODV \includegraphics[height=1.5ex]{odv_logo_small}
+\item[2008] code in Subversion \includegraphics[height=2ex]{logo_svn}, distribution through GHER web page
+\item[2009] new modules in Fortran 90\\
+ for loops over depth and time 
+\item[2012] new error calculation technique
+\item[2017] switch from \includegraphics[height=2ex]{logo_svn} to \faGit, distribution via \href{https://github.com/gher-ulg/DIVA}{\faGithub}
+
+\end{description}
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{From SVN to Git and GitHub}
+
+\onslide*<1>{\textbf{Easy way}
+
+\begin{enumerate}
+\item Create a new repository with the latest release of the code
+\item Lose all the history of the changes, the previous releases and developing branches\\
+ \includegraphics[height=.5cm]{troll.png}
+\end{enumerate}
+}
+
+\onslide*<2>{\textbf{Hard/conservative way}
+
+\begin{enumerate}
+\item Git repository whose structure reflects that of SVN\\
+(trunk, branches, tags)
+\item Use the \href{https://git-scm.com/book/en/v2/Git-and-Other-Systems-Migrating-to-Git	 }{\texttt{git-svn}} bridge\\
+\item End up with a new GitHub repos with all the history
+\end{enumerate}
+}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
 
 \begin{frame}[t]
 \frametitle{Use-case: Diva releases}
@@ -96,10 +390,16 @@ $^{\ast}$Balearic Islands Coastal Ocean\\ Observing and Forecasting System}
 \begin{enumerate}
 \item<1-> Switch from SVN to GitHub (conserving the history) 
 \item<2-> Enable Diva repository on Zenodo
-\item<3-> Edit the different \textit{tags} on GitHub (otherwise DOI not generated) 
-\item<4-> To do? Include Diva corresponding DOI in product netCDF?
+\item<3-> Edit the different \textit{tags} on GitHub to get DOI 
+\item<4-> Now we can have\\
+{\footnotesize
+"\textit{The version used for the DIVA software is the 4.6.9,\\
+doi: \href{http://doi.org/10.5281/zenodo.400968}{10.5281/zenodo.400968}}
+}
+\item<5-> Bonus: "\textit{cite as}" and social media
 \end{enumerate}
-\vspace{1cm}
+
+\vspace{.25cm}
 
 \onslide*<1>{\footnotesize
 Resources:
@@ -111,13 +411,51 @@ Resources:
 }
 
 \onslide*<2>{
-\includegraphics[width=.75\textwidth]{zenodoDiva}
+\includegraphics[width=.9\textwidth]{zenodoDiva}
 }
 
 \onslide*<3>{
-\includegraphics[width=.75\textwidth]{zenodoDiva2}
+\includegraphics[width=.9\textwidth]{zenodoDiva2}
 }
 
+\onslide*<5>{
+\includegraphics[width=.35\textwidth]{zenodoHowToCite}
+}
+
+\end{frame}
+
+
+%------------------------------------------------------------------------------------------------
+\section{Use case 2: SOCIB Glider toolbox}
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
+  {\parbox[t]{.6\paperwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle2}{Use case II}}};
+\node[anchor=east]
+  at ([yshift=-35pt,xshift=-20pt]current page.east) (title2)
+  {\parbox[t]{\textwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle1}\usebeamercolor[fg]{title}{SOCIB Glider toolbox}}};
+\end{tikzpicture}
+
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}[c]
+\frametitle{Conclusions on Zendo}
+
+\begin{enumerate}
+\item Seamless integration with GitHub, login via ORCID
+\item A big step toward reproducibility
+\item A mature and user friend tool 
+\end{enumerate}
 
 \end{frame}
 
