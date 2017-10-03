@@ -2,7 +2,7 @@
 
 \title{Notebooks for documenting work-flows}
 %\subtitle{}
-\author[C.~Troupin]{C.~Troupin$^{\star}$, C.~Muñoz$^{\ast}$,\\S.~Watelet$^{\star}$, A.~Barth$^{\star}$ \& J.-M.~Beckers$^{\star}$}
+\author[C.~Troupin]{C.~Troupin$^{\star}$, A.~Barth$^{\star}$ \\ C.~Muñoz$^{\ast}$, S.~Watelet$^{\star}$,  \& J.-M.~Beckers$^{\star}$}
 
 \institute{$^{\star}$GHER-University of Liège
 
@@ -70,15 +70,265 @@ Reproducibility
 
 
 %-------------------------------------------------------------------------------------------------------------------
+\section{State of the art}
+\begin{frame}
 
-
-\begin{frame}[t]
-\frametitle{Interactive environments: what exists today?}
-
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
+  {\parbox[t]{.8\paperwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle2}{Interactive environments:}}};
+\node[anchor=east]
+  at ([yshift=-35pt,xshift=-20pt]current page.east) (title2)
+  {\parbox[t]{\textwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle1}\usebeamercolor[fg]{title}{what exists today?}}};
+\end{tikzpicture}
 
 \end{frame}
 
+%-------------------------------------------------------------------------------------------------------------------
 
+\begin{frame}[t]
+\frametitle{R-Markdown}
+\parskip .5cm
+
+\url{​http://rmarkdown.rstudio.com/​}
+
+\onslide*<1>{
+\includegraphics[width=\textwidth]{Rmarkdown}
+}
+
+\onslide*<2>{
+Creation of dynamic, self-contained documents\\
+with embedded chunks of code. 
+
+Features of interest:
+\begin{itemize}
+\item Possible to export in journal (\url{​https://github.com/rstudio/rticles​}) or 
+presentation formats
+\item \LaTeX templates to ensure journal standards
+\end{itemize}
+}
+
+\end{frame}
+
+%-------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\frametitle{Apache Zeppelin}
+
+\parskip .25cm
+
+\url{​https://zeppelin.apache.org/​}
+
+\onslide*<1>{
+\includegraphics[width=\textwidth]{Zeppelin}
+}
+
+\onslide*<2>{
+Web-based notebook for\\ data-driven, interactive and collaborative documents.\\
+Intended for \textit{big data} and large scale projects.
+
+Features of interest:\begin{itemize}
+\item Languages can be mixed in the same notebook
+\item Users can write their own interpreter (\textit{language backend})
+\end{itemize}
+}
+
+\end{frame}
+
+%-------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\frametitle{Jupyter}
+
+\parskip .25cm
+
+\url{​http://jupyter.org/}\hfill​ (stands for Julia - Python - R)
+
+\onslide*<1>{
+\includegraphics[width=\textwidth]{jupyter}
+}
+
+\onslide*<2>{
+Web application for the creation and sharing of notebook-type documents.\\
+Evolved from ​IPython​, a command shell for interactive computing (2001). 
+
+Features of interest:
+\begin{itemize}
+\item More than 40 language \textit{kernels} available
+\item Can be used as a multi-user server (\texttt{​jupyterhub​})\\
+$\rightarrow$ avoid installation steps on several users' machine
+\end{itemize} 
+}
+
+\end{frame}
+
+%-------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\frametitle{Beaker}
+
+\parskip .25cm
+
+\url{​http://beakernotebook.com/​}
+
+\onslide*<1>{
+\includegraphics[width=\textwidth]{beaker}
+}
+
+\onslide*<2>{
+Notebook-style development environment for working interactively with large and complex datasets. 
+
+Features of interest:
+\begin{itemize}
+\item Usage of different languages in different cells,\\ 
+within the same notebook
+\item Language manager
+\end{itemize}
+}
+
+\end{frame}
+
+%-------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\frametitle{CoCalc}
+
+\parskip .25cm
+
+\url{​https://cocalc.com/​}\\ "\textit{Collaborative Calculation in the Cloud}" 
+
+\onslide*<1>{
+\includegraphics[width=\textwidth]{cocalc}
+}
+
+\onslide*<2>{
+Web-based cloud computing platform, formerly called formerly called \texttt{SageMathCloud}. 
+
+Features of interest:
+\begin{itemize}
+\item Support of many languages
+\item Users to upload their file on the platform\\
+ to be later read or processed
+\end{itemize}
+}
+\end{frame}
+%-------------------------------------------------------------------------------------------------------------------
+
+\begin{frame}[c]
+\frametitle{Comparison}
+
+\Wider{
+\begin{table}
+\scriptsize
+\begin{tabular}{C{1.5cm}L{1.5cm}L{1.5cm}L{1.5cm}L{1.5cm}L{1.5cm}}
+\textbf{Tool name}		& R-Markdown	& jupyter	& beaker	& Cocalc & Zeppelin\\
+\hline
+\onslide<2->{\textbf{GitHub}			& \href{https://github.com/rstudio/rmarkdown}{rmarkdown} & 
+\href{https://github.com/jupyter/notebook}{notebook} &
+\href{https://github.com/twosigma/beakerx}{beakerx} &
+\href{https://github.com/sagemathinc/cocalc}{cocalc} &
+\href{https://github.com/apache/zeppelin}{zeppelin} \\
+\hline}
+\onslide<3->{\textbf{Languages}	& R, Python, SQL, Bash, Rcpp, Stan, JavaScript &
+Julia, Python, R, Scala, Bash, Octave, Rubi, Fortran, PHP, \ldots&
+Julia, Python, R, Javascript, C++, Torch, Scala, Bash, Octave, Rubi, Fortran, \ldots &
+R​, Python, Octave​, Cython, ​Julia, Java, C/C++, Perl, Ruby &
+Scala, Python, SparkSQL, Hive, Markdown \\
+\hline}
+\onslide<4->{
+\textbf{Export formats} & 
+HTML, PDF, MS Word, Beamer, HTML5 slides, \ldots & 
+PDF, LaTeX, HMTL, Markdown, reST & 
+Beaker format & 
+& JSON \\
+\hline}
+\onslide<5->{
+\textbf{Cloud deployment}	& -- & \cellcolor{Yellow}JupyterHub & Beaker Lab {\tiny (discontinued)} & -- & Yes \\
+}
+\end{tabular}
+\end{table}
+}
+
+\end{frame}	
+
+
+\begin{frame}[c]
+\frametitle{Summary}
+
+\begin{enumerate}
+
+\item Most of the environments provides supports for many languages
+
+\item Beaker is the only option allowing the mix of different languages\\
+but its installation/utilisation are not trivial
+
+\item ​JupyterHub is an option for the deployment on a server so that
+multiple users can work at the same time using the same infrastructure
+\end{enumerate}
+
+\end{frame}
+
+%--------------------------------------------------------------
+
+
+\section{Notebooks to document workflows}
+\begin{frame}
+
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
+  {\parbox[t]{.8\paperwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle2}{Notebook example:}}};
+\node[anchor=east]
+  at ([yshift=-35pt,xshift=-20pt]current page.east) (title2)
+  {\parbox[t]{\textwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle1}\usebeamercolor[fg]{title}{divaND interpolation}}};
+\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[c]
+\frametitle{A quick example of how to document workflow}
+
+\href{./divand_example.slides.html}{Click here}
+\end{frame}
+
+\section{Conclusions}
+
+\begin{frame}
+
+\frametitle{Conclusions}
+
+\begin{enumerate}
+\item<1-> Notebooks are interactive computational environments\\
+combining code, text, results, figures\ldots
+\item<2-> Notebooks are not Virtual Research Environment,\\
+but can be one of their components
+\item<3-> Notebooks are not new (15 years)\\
+but their use has evolved
+\item<4-> Such a tool is great to document a workflow\\
+Example: climatology production
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Future work}
+
+\begin{enumerate}
+\item<1-> Examples using SeaDataCloud data
+\item<2-> Application with data API \comment{(SOCIB, NOAA OneStop)}
+\item<3-> Notebook citation \comment{See on Wednesday}
+\end{enumerate}
+
+\end{frame}
 
 
 \end{document}

@@ -14,8 +14,12 @@
 \usepackage{colortbl}
 \usepackage{tabularx}
 
-\newcolumntype{R}{>{\raggedleft\arraybackslash}X} 
-\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+%\newcolumntype{R}{>{\raggedleft\arraybackslash}X} 
+%\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 
 
@@ -27,6 +31,7 @@
 \DeclareGraphicsExtensions{.pdf,.png,.PNG,.JPG,.jpg,.jpeg,.gif}
 \graphicspath{
 {./figures/},
+{./figures/Screenshots/},
 {./figures/scientificprofiles/}
 {/home/ctroupin/Presentations/figures4presentations/logo/},
 }
@@ -109,6 +114,14 @@
 \setlength{\logoH}{1cm}
 \newcommand{\montant}{\rule{0pt}{3ex}}
 \newcommand{\comment}[1]{\hfill\textcolor{commentcolor}{#1}}
+
+\newcommand\Wider[2][3em]{%
+\makebox[\linewidth][c]{%
+  \begin{minipage}{\dimexpr\textwidth+#1\relax}
+  \raggedright#2
+  \end{minipage}%
+  }%
+}
 
 %--------------------------------
 \hypersetup{bookmarksopen=true,
