@@ -29,9 +29,10 @@ $^{\ast}$Balearic Islands Coastal Ocean\\ Observing and Forecasting System}
 \maketitle
 \end{frame}
 
+
 %--------------------------------------------------------------------------------------------------------------
 \begin{frame}
-\frametitle{Persistent identifier everywhere}
+\frametitle{Persistent identifiers everywhere}
 \begin{tikzpicture}
 
 %\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.9\textwidth]{figures/im_back.png}};
@@ -42,7 +43,7 @@ $^{\ast}$Balearic Islands Coastal Ocean\\ Observing and Forecasting System}
 
 \onslide<1->{
 \node[fill=LightYellow,text=black] (OceanObservation)  at (1,7) {Ocean Observation};
-\node[fill=LightGreen,text=black] (Science) at (9,7) {Science};
+\node[fill=LightGreen,text=black] (Science) at (9,7) {Science/expertise};
 
 }
 
@@ -68,6 +69,7 @@ $^{\ast}$Balearic Islands Coastal Ocean\\ Observing and Forecasting System}
  
 \end{tikzpicture}
 
+\vspace*{.5cm}
 
 \onslide<5>{
 How can we ensure the readers/users\\
@@ -103,8 +105,8 @@ what about}}};
 \begin{frame}
 \frametitle{Context: who has done what, and how?}
 
-\onslide<2>{Let's work with ORCID\\
-§see previous ODIP workshops}\\[1cm]
+\onslide<2>{Let's work with ORCID and MarineID\\
+(see previous ODIP workshops)}\\[1cm]
 
 
 
@@ -130,7 +132,7 @@ what about}}};
 \aiInspire
 \aiMendeley
 \aiOpenAccess
-\alert<2>{\aiOrcid}
+\alert<2>{\aiOrcid} \onslide<2>{\includegraphics[height=.5cm]{marineID.png}}
 
 \aiOSF
 \aiOverleaf
@@ -237,7 +239,7 @@ See previous ODIP workshops + links to other initiatives
 \frametitle{Products and results}
 
 \onslide*<1>{
-\textbf{Results=} \\
+\textbf{Results:} \\
 numerical model outputs (re-analysis, forecasts)\\
 climatologies build from in situ data\\
 aggregated datasets
@@ -290,13 +292,12 @@ Can we go further and have:\\
 doi: \href{http://dx.doi.org/10.5281/zenodo.836727}{10.5281/zenodo.836727}}"
 ?
 }
-https://git-scm.com/book/en/v2/Git-and-Other-Systems-Migrating-to-Git
 \end{frame}
 
 %-----------------------------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Software tools and methods: journals}
+\frametitle{Software tools and methods: Journals}
 
 \onslide*<1>{
 \href{https://www.geoscientific-model-development.net/)}{Geoscientific Model Development}
@@ -444,12 +445,14 @@ funded by the European Commission
 
 \end{frame}
 
+%---------------------------------------------------------------------------------
+
 \begin{frame}
 \frametitle{Comparison}
 
 \begin{table}
 \scriptsize
-\begin{tabularx}{\textwidth}{@{}c L L L L @{}}
+\begin{tabularx}{\textwidth}{@{}c P P P P @{}}
 \rowcolor{LightYellow} Tool 		& 	CKAN		& DSpace		& 	Figshare 	& Zenodo	\\
 Open Source 						&  \yestab		& \yestab		& No			& \yestab	\\
 \faGithub							& ckan/ckan 	& DSpace/DSpace & -- 			& zenodo/zenodo	\\
@@ -506,9 +509,9 @@ Integration with \aiOrcid			& \yestab	 	& Not direct 	& \yestab 		& Login			\\
 %\foreach \x in {0,1,...,9} { \node [anchor=north] at (\x,0) {\x}; }
 %\foreach \y in {0,1,...,9} { \node [anchor=east] at (0,\y) {\y}; }
 
-\onslide<1>{
+\onslide<1-2>{
 \node[fill=LightYellow,text=black] (OceanObservation)  at (1,7) {Ocean Observation};
-\node[fill=LightGreen,text=black] (Science) at (9,7) {Science};
+\node[fill=LightGreen,text=black] (Science) at (9,7) {Science/expertise};
 \node[fill=LightYellow,text=black] (GenerateDataset) at (1,5) {Generate Dataset};
 \draw[->,>=stealth] (OceanObservation) edge (GenerateDataset);
 
@@ -522,11 +525,14 @@ Integration with \aiOrcid			& \yestab	 	& Not direct 	& \yestab 		& Login			\\
 \node[fill=LightGreen,text=black] (DOIpub) at (9,3.5) {\aiDoi};
 \draw[->,>=stealth](GenerateDataset) edge (DOIdata);
 \draw[->,>=stealth](Publication) edge (DOIpub);
+}
+
+\onslide<2>{
 \node[fill=LightSkyBlue,text=black] (SourceCode) at (8,2) {Source Code};
 \draw[->,>=stealth](Software) edge[in=90,out=0] (SourceCode);
 }
 
-\onslide<1-2>{
+\onslide<2-3>{
 \node[fill=DarkOrange,text=black] (GitHub) at (4.5,.5) {\faGithub};
 \node[fill=LightSkyBlue,text=black] (SourceCode) at (8,2) {Source Code};
 \draw[->,>=stealth](SourceCode) edge[in=0,out=-90] node[anchor=center, above, sloped] {\scriptsize Upload} (GitHub);
@@ -629,12 +635,13 @@ In particular: Software \comment{ (ok for stable code)}
 \end{frame}
 
 %-----------------------------------------------------------------------------------------------
-\begin{frame}[c]
+\begin{frame}[t]
 \frametitle{Upload: add metadata}
 
 \begin{figure}
 \centering
-\includegraphics[width=.9\textwidth]{zenodo_edit}
+\includegraphics<1>[width=.9\textwidth]{zenodo_edit}
+\includegraphics<2>[width=.9\textwidth]{zenodo_edit2}
 \end{figure}
 
 \end{frame}
@@ -866,7 +873,10 @@ Resources:
 }
 
 \onslide*<5>{
-\includegraphics[width=.35\textwidth]{zenodoHowToCite}
+\begin{figure}
+\centering
+\includegraphics[width=.5\textwidth]{zenodoHowToCite}
+\end{figure}
 }
 
 \end{frame}
@@ -893,17 +903,78 @@ Resources:
 
 \end{frame}
 
+\begin{frame}
+\frametitle{Glider toolbox (Matlab/Octave)}
+
+\begin{columns}
+
+\begin{column}{0.6\textwidth}  %%<--- here
+    \begin{center}
+     \includegraphics[width=0.95\textwidth]{0_socib_obs.png}
+     \end{center}
+\end{column}
+
+\begin{column}{0.4\textwidth}
+SOCIB Glider toolbox is a set of MATLAB/Octave scripts and functions to manage the data collected by our Glider fleet
+
+\begin{center}
+$\downarrow$
+\end{center}
+
+NetCDF-CF compliant
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Objectives}
+
+\begin{itemize}
+\item Publish results of our day by day work
+\item Track the utilization of our toolbox from research activities
+\end{itemize}
+
+\begin{figure}
+     \includegraphics[width=0.75\textwidth]{gliderusers.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{User Experience}
+\Wider{
+\begin{figure}
+     \includegraphics[width=0.95\textwidth]{userexperience.png}
+\end{figure}
+}
+\end{frame}
 %-----------------------------------------------------------------------------------------------
 
 \begin{frame}[c]
-\frametitle{Conclusions on Zendo}
+\frametitle{Conclusions on Zenodo}
 
+\parskip .5cm
 \begin{enumerate}
 \item Seamless integration with GitHub, login via ORCID
 \item A big step toward reproducibility
-\item A mature and user friend tool 
+\item A mature and user-friendly tool 
 \end{enumerate}
 
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\begin{figure}
+\centering
+\includegraphics[width=.6\textwidth]{wolfgangpauli.jpg}
+\end{figure}
+
+\textit{I don't mind your thinking slowly;\\
+I mind your publishing faster than you think}
+
+\vspace{.25cm}
+
+W.~Pauli
 \end{frame}
 
 

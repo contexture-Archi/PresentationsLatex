@@ -2,13 +2,12 @@
 
 
 \title{Experiences with using\\ netCDF 4}
-\author[C.~Troupin]{C.~Troupin, C.~Muñoz, S.~Watelet,\\ A.~Barth \& J.-M.~Beckers}
-\institute{GHER-University of Liège\\ SOCIB}
+\author[C.~Troupin]{C.~Troupin, S.~Watelet,\\ A.~Barth \& J.-M.~Beckers}
+\institute{GHER-University of Liège}
 \date{Galway (Ireland), 2-6 October, 2017}
 \titlegraphic{\includegraphics[height=\logoheight]{logo_odip2}
-\includegraphics[height=\logoheight]{logo_uliege.jpeg}\\
-\includegraphics[height=\logoheight]{logo_gher}
-\includegraphics[height=\logoheight]{logo_socib}}
+\includegraphics[height=\logoheight]{logo_uliege.jpeg}\includegraphics[height=\logoheight]{logo_gher}
+}
 %\url{www.socib.es}}
   
 \urlstyle{rm}
@@ -23,7 +22,7 @@
 \begin{frame}
 \frametitle{NetCDF = network Common Data Form (not format!)}
 
-\onslide*<2>{Wrong in these pages: \hfill \includegraphics[height=.75cm]{troll.png}\\
+\onslide*<2-3>{Wrong in these pages: \hfill \includegraphics[height=.75cm]{troll.png}\\
 \vspace{1.5cm}
 
 IPPC:\\
@@ -32,9 +31,11 @@ Ocean Color:\\
  \url{https://oceancolor.gsfc.nasa.gov/docs/format/l2nc/}\\
 NASA Earth Data:\\
  \url{https://earthdata.nasa.gov/user-resources/acronym-list}
+ 
+ \onslide<3>{"\textit{Good catch Charles! We will make the correction, thank you.}"}
 }
 
-\onslide*<3>{
+\onslide*<4>{
 Correct spelling according to \href{http://www.unidata.ucar.edu/software/netcdf/docs/BestPractices.html}{Unidata Best practices}:
 
 \begin{description}
@@ -143,13 +144,37 @@ without shuffling: $<2$\%
 %-----------------------------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Checksum (to complete)}
-File getting bigger, need to be sure the file integrity
+\frametitle{Checksum}
+
+\parskip 1cm
+Files getting bigger, need to be sure the file integrity
+
+Need to assess how performance is affected
+
+
 
 \end{frame}
 
 %-----------------------------------------------------------------------------------------------
 \section{NetCDF usage}
+%-----------------------------------------------------------------------------------------------
+
+\begin{frame}
+\begin{tikzpicture}[remember picture,overlay]
+\fill[bluegher]
+  (current page.west) rectangle (current page.south east);
+\node[anchor=east] 
+  at ([yshift=35pt, xshift=-20pt]current page.east) (title1)
+  {\parbox[t]{.6\paperwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle2}{NetCDF}}};
+\node[anchor=east]
+  at ([yshift=-35pt,xshift=-20pt]current page.east) (title2)
+  {\parbox[t]{\textwidth}{\raggedleft%
+   \usebeamerfont{sectiontitle1}\usebeamercolor[fg]{title}{in languages and software tools}}};
+\end{tikzpicture}
+
+\end{frame}
+
 
 \begin{frame}
 \frametitle{Programing languages: netCDF4 is there!}
@@ -178,9 +203,8 @@ Matlab											&		Native support since R2010b\\
 \begin{frame}[t]
 \frametitle{Visualisation and analysis tools: comparison}
 
-\footnotesize
-
-\begin{overlayarea}{\textwidth}{2.5cm}
+\Wider{
+\begin{overlayarea}{\textwidth}{1.cm}
 \onslide*<1>{Tools}
 \onslide*<2>{Error estimation}
 \onslide*<3>{Interpolation or analysis?}
@@ -188,44 +212,40 @@ Matlab											&		Native support since R2010b\\
 \onslide*<5>{netCDF as input}
 \onslide*<6>{netCDF as output}
 \onslide*<7>{OGC compliance}
-
-
 \end{overlayarea}
 
 
 
 \begin{table}
 \scriptsize
-\begin{tabular}{cccccc}
+\begin{tabular}{C{1.5cm}C{1.5cm}C{1.5cm}C{1.5cm}C{1.5cm}C{1.5cm}C{.1cm}}
 
+\rowcolor{LightBlue}\onslide*<1->{IDL			& ODV 		& IDV 		& (arc)GIS 	& DIVA 		& divand& \\
+&&&&&&\\}
+\onslide*<1>{			&			&			&			&			&		 &}
+\onslide*<2>{No			&	Yes		&	No		&	No		&	Yes		& Yes	 &}
+\onslide*<3>{Int./Anl. & Int./Anl.	& Int. 		& Int./Anl.	& Anl. 		& Anl.	&}
+\onslide*<4>{2D (3D if inv. dist.)	& 2D 		& 2D 		& 2D 		& 2D & nD&}
+\onslide*<5>{Yes 		& Yes 		& Yes 		& Yes 		& Yes 		& No &}
+\onslide*<6>{Yes 		& Yes 		& No 		& Yes 		& Yes 		& Yes&}
+\onslide*<7>{Yes ? 		& ? 		& No ?		& Yes 		& ? 		& ?&}
 
+\\&&&&&&\\
+\rowcolor{LightBlue}\onslide*<1->{Diva-on-web & SURFER 	& Ferret 	& GNU R 	& Panoply &	 &\\
+&&&&&&\\}
+\onslide*<1>{			&			&			&			&			&		 &}
+\onslide*<2>{Yes		&	No		&	No		&	No		&	No		&		 &}
+\onslide*<3>{Int./Anl. & Int./Anl.	& Int. 		& Int./Anl.	& Anl. 		& 		 &}
+\onslide*<4>{2D 		& 2D 		& 4D 		& 2D 		& 2D 		&		 &}
+\onslide*<5>{No 		& Yes 		& Yes 		& Yes 		& Yes 		& 		 &}
+\onslide*<6>{Yes 		& Yes 		& Yes 		& Yes 		& Yes 		&  		 &}
+\onslide*<7>{Yes   		& ? 		& ? 		& ? 		& No? 		&		 &}
 
-\rowcolor{LightBlue}\onslide*<1->{IDL			& ODV 		& IDV 		& (arc)GIS 	& DIVA 		& divand} \\
-&&&&&\\
-\onslide*<1>{			&			&			&			&			&		 }
-\onslide*<2>{No			&	Yes		&	No		&	No		&	Yes		&	Yes	 }
-\onslide*<3>{Int./Anl. & Int./Anl. & Int. & Int./Anl. & Anl. & Anl.}
-\onslide*<4>{2D (3D if inv. dist.)& 2D & 2D & 2D & 2D & nD}
-\onslide*<5>{Yes & Yes & Yes & Yes & Yes & No }
-\onslide*<6>{Yes & Yes & No & Yes & Yes & Yes }
-\onslide*<7>{Yes ? & ? & No ? & Yes & ? & ?}
-
-\\&&&&&\\
-\rowcolor{LightBlue}\onslide*<1->{Diva-on-web & SURFER 	& Ferret 	& GNU R 	& Panoply &	 }\\
-&&&&&\\
-\onslide*<1>{			&			&			&			&			&		 }
-\onslide*<2>{Yes		&	No		&	No		&	No		&	No		&		 }
-\onslide*<3>{Int./Anl. & Int./Anl. & Int. & Int./Anl. & Anl. & Anl.}
-\onslide*<4>{2D & 2D & 4D & 2D & 2D &}
-\onslide*<5>{No & Yes & Yes & Yes & Yes & No}
-\onslide*<6>{Yes & Yes & Yes & Yes & Yes & No }
-\onslide*<7>{Yes   & ? & ? & ? & No? &}
-
-\\&&&&&\\
+\\&&&&&&\\
 
 \end{tabular}
 \end{table}
-
+}
 \end{frame}
 
 %-----------------------------------------------------------------------------------------------
@@ -237,6 +257,7 @@ Matlab											&		Native support since R2010b\\
 \onslide*<1>{
 
 Table available at {\footnotesize \url{https://github.com/gher-ulg/ODIP/blob/master/netCDFtools.md}}
+\vspace{.5cm}
 
 \includegraphics[width=.7\textwidth]{netcdf_table.png}
 
